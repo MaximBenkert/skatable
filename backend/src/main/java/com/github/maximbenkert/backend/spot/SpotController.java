@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/spot")
+@RequestMapping("/api/spots")
 @RequiredArgsConstructor
 public class SpotController {
     private final SpotService spotService;
