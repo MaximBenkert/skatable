@@ -3,9 +3,8 @@ import './App.css';
 
 function App() {
   return (
-    <div>
-
-        skate it
+      <div className="App">
+          <h1>Skate it</h1>
 
     </div>
   );
