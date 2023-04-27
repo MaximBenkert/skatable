@@ -19,7 +19,6 @@ export default function SpotGallery(props: Props) {
                         <SpotCard key={spot.id} spot={spot}/>
                     )
                 })
-
                 }
             </ul>
 

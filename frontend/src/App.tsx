@@ -7,15 +7,10 @@ function App() {
 
     const {spots} = useSpots()
 
-
   return (
     <div className="App">
-      <header className="App-header">
         <h1>Skate it</h1>
-      </header>
         <SpotGallery spots={spots}/>
-
-
     </div>
   );
 }
