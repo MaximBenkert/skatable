@@ -3,10 +3,10 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
+    <div>
+
         skate it
-      </header>
+
     </div>
   );
 }
