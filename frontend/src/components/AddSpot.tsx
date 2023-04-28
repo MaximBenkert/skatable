@@ -9,23 +9,22 @@ type AddSpotProps = {
 }
 
 export default function AddSpot(props: AddSpotProps) {
-    const [name, setName] = useState<string> ("")
+    const [name, setName] = useState<string>("")
+    const [latitude, setLatitude] = useState<number>(50.941278)
+    const [longitude, setLongitude] = useState<number>(6.958281)
 
     const navigate = useNavigate()
 
 
-
-
-
-    function onSaveSpot(event: FormEvent<HTMLFormElement>){
+    function onSaveSpot(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
 
         if (name === undefined || name === "") {
             console.error("name required")
             return
         }
-        const coordinates: Coordinates = {latitude: 34.9888, longitude: 54.7858}
-        const newSpot: NewSpot = {coordinates: coordinates, name: name}
+        const coordinates: Coordinates = {latitude, longitude}
+        const newSpot: NewSpot = {coordinates, name}
         props.addSpot(newSpot)
         navigate("/spots")
 
@@ -41,7 +40,25 @@ export default function AddSpot(props: AddSpotProps) {
                            onChange={(event) => {
                                setName(event.target.value)
                            }}/>
-                <Button className='mybutton' variant='contained' color="success" type='submit'>Save</Button>
+                <TextField label='latitude'
+                           required
+                           value={latitude}
+                           onChange={(event) => {
+                               setLatitude(parseFloat(event.target.value))
+                           }}/>
+                <TextField label='longitude'
+                           required
+                           value={longitude}
+                           onChange={(event) => {
+                               setLongitude(parseFloat(event.target.value))
+                           }}/>
+
+                <Button
+                    className='myButton'
+                    variant='contained'
+                    color="success"
+                    type='submit'
+                >Save</Button>
 
             </form>
         </div>
