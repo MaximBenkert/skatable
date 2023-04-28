@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {Spot} from "../models/Spot";
+import {NewSpot, Spot} from "../models/Spot";
 import axios from "axios";
 
 export default function useSpots() {
@@ -15,8 +15,15 @@ export default function useSpots() {
             .then((getAllSpotsResponse) => {
                 setSpots(getAllSpotsResponse.data)
             })
-            .catch((error) => {console.error(error)})
-
+            .catch(reason => console.error(reason))
     }
-    return {spots}
+
+        function addSpot(spot: NewSpot) {
+            axios.post("/api/spots", spot)
+                .then(spotAddedResponse => spotAddedResponse.data)
+                .then(data => setSpots([...spots, data]))
+                .catch(reason => console.error(reason))
+        }
+
+    return {spots, addSpot}
 }
