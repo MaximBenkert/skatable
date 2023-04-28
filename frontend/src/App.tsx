@@ -1,11 +1,16 @@
 import React from 'react';
 import './App.css';
+import useSpots from "./hooks/useSpots";
+import SpotGallery from "./components/SpotGallery";
 
 function App() {
-  return (
-      <div className="App">
-          <h1>Skate it</h1>
 
+    const {spots} = useSpots()
+
+  return (
+    <div className="App">
+        <h1>Skate it</h1>
+        <SpotGallery spots={spots}/>
     </div>
   );
 }
