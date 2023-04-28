@@ -22,7 +22,7 @@ public class SpotController {
         return spotService.addSpot(spot);
     }*/
 
-    @PostMapping("/spots")
+    @PostMapping
     Spot addSpot(@RequestBody SpotDTO spotDTO) {
         return spotService.addSpot(spotDTO);
     }
