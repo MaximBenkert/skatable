@@ -15,7 +15,7 @@ public record Spot(
         Coordinates coordinates,
         String name
 ) {
-        Spot(
+        /*Spot(
                 Coordinates coordinates,
                 String name
         ){
@@ -23,5 +23,5 @@ public record Spot(
         }
         public Spot withId(String id) {
                 return new Spot (id, coordinates, name);
-        }
+        }*/
 }

@@ -17,10 +17,16 @@ public class SpotController {
         return spotService.getAllSpots();
     }
 
-    @PostMapping
+    /*@PostMapping
     Spot postSpot(@RequestBody @Valid Spot spot) {
         return spotService.addSpot(spot);
+    }*/
+
+    @PostMapping("/spots")
+    Spot addSpot(@RequestBody SpotDTO spotDTO) {
+        return spotService.addSpot(spotDTO);
     }
+
 
 
 

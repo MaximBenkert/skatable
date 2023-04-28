@@ -15,10 +15,15 @@ public class SpotService {
         return spotRepository.findAll();
     }
 
-    public Spot addSpot(Spot spot) {
+    /*public Spot addSpot(Spot spot) {
         String id = UUID.randomUUID().toString();
 
         Spot spotToAdd = spot.withId(id);
+        return spotRepository.save(spotToAdd);
+    }*/
+
+    public Spot addSpot(SpotDTO spotDTO) {
+        Spot spotToAdd = spotDTO.toSpot();
         return spotRepository.save(spotToAdd);
     }
 }
