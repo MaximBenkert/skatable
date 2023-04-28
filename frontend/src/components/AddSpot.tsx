@@ -48,7 +48,7 @@ export default function AddSpot(props: AddSpotProps) {
                         id="latitude"
                         type="number"
                         inputProps={{
-                            step: 0.000001,
+                            step: 0.0001,
                             min: -90,
                             max: 90,
                         }}
@@ -66,7 +66,7 @@ export default function AddSpot(props: AddSpotProps) {
                         id="longitude"
                         type="number"
                         inputProps={{
-                            step: 0.000001,
+                            step: 0.0001,
                             min: -180,
                             max: 180,
                         }}
