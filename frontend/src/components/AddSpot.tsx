@@ -2,7 +2,7 @@ import {NewSpot} from "../models/Spot";
 import {FormEvent, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {Coordinates} from "../models/Coordinates";
-import {Button, TextField} from "@mui/material";
+import {Button, FormControl, FormHelperText, Input, InputLabel, TextField} from "@mui/material";
 
 type AddSpotProps = {
     addSpot: (newSpot: NewSpot) => void
@@ -40,18 +40,44 @@ export default function AddSpot(props: AddSpotProps) {
                            onChange={(event) => {
                                setName(event.target.value)
                            }}/>
-                <TextField label='latitude'
-                           required
-                           value={latitude}
-                           onChange={(event) => {
-                               setLatitude(parseFloat(event.target.value))
-                           }}/>
-                <TextField label='longitude'
-                           required
-                           value={longitude}
-                           onChange={(event) => {
-                               setLongitude(parseFloat(event.target.value))
-                           }}/>
+
+
+                <FormControl>
+                    <InputLabel htmlFor="latitude">Latitude</InputLabel>
+                    <Input
+                        id="latitude"
+                        type="number"
+                        inputProps={{
+                            step: 0.000001,
+                            min: -90,
+                            max: 90,
+                        }}
+                        required
+                        value={latitude}
+                        error={latitude < -90 || latitude > 90}
+                        onChange={(event) => setLatitude(parseFloat(event.target.value))}
+                    />
+                    {latitude < -90 || latitude > 90 ? <FormHelperText>Invalid latitude value</FormHelperText> : null}
+                </FormControl>
+
+                <FormControl>
+                    <InputLabel htmlFor="longitude">Longitude</InputLabel>
+                    <Input
+                        id="longitude"
+                        type="number"
+                        inputProps={{
+                            step: 0.000001,
+                            min: -180,
+                            max: 180,
+                        }}
+                        required
+                        value={longitude}
+                        error={longitude < -180 || longitude > 180}
+                        onChange={(event) => setLongitude(parseFloat(event.target.value))}
+                    />
+                    {longitude < -180 || longitude > 180 ? <FormHelperText>Invalid longitude value</FormHelperText> : null}
+                </FormControl>
+
 
                 <Button
                     className='myButton'
