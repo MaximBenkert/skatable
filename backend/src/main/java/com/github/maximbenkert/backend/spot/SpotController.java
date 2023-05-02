@@ -1,5 +1,6 @@
 package com.github.maximbenkert.backend.spot;
 
+
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -17,13 +18,8 @@ public class SpotController {
         return spotService.getAllSpots();
     }
 
-    /*@PostMapping
-    Spot postSpot(@RequestBody @Valid Spot spot) {
-        return spotService.addSpot(spot);
-    }*/
-
     @PostMapping
-    Spot addSpot(@RequestBody SpotDTO spotDTO) {
+    Spot addSpot(@RequestBody @Valid SpotDTO spotDTO) {
         return spotService.addSpot(spotDTO);
     }
 

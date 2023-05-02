@@ -10,9 +10,9 @@ import jakarta.validation.constraints.Size;
 public record Spot(
         @Id
         String id,
+        Coordinates coordinates,
         @NotBlank
         @Size (min = 3, max = 32)
-        Coordinates coordinates,
         String name
 ) {
 }
