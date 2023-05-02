@@ -16,7 +16,7 @@ public class SpotService {
     }
 
     public Spot addSpot(SpotDTO spotDTO) {
-        Spot spotToAdd = new Spot(null, spotDTO.coordinates(), spotDTO.name());
+       Spot spotToAdd = new Spot(null, spotDTO.coordinates(), spotDTO.name());
         return spotRepository.save(spotToAdd);
     }
 
