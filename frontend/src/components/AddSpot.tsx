@@ -10,8 +10,8 @@ type AddSpotProps = {
 
 export default function AddSpot(props: AddSpotProps) {
     const [name, setName] = useState<string>("")
-    const [latitude, setLatitude] = useState<number>(50.941278)
-    const [longitude, setLongitude] = useState<number>(6.958281)
+    const [latitude, setLatitude] = useState<number>(50.9412)
+    const [longitude, setLongitude] = useState<number>(6.9582)
 
     const navigate = useNavigate()
 
