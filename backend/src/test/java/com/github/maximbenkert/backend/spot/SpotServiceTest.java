@@ -12,15 +12,19 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 class SpotServiceTest {
-
     SpotRepository spotRepository = mock(SpotRepository.class);
     SpotService spotService = new SpotService(spotRepository);
 
-    private final String testIdOne = "123";
-    private final Coordinates testCoordinates = new Coordinates(52.3333, 25.3333);
-    private final String testName = "Treppen";
+    final String testIdOne = "123";
+    final Coordinates testCoordinates = new Coordinates(52.3333, 25.3333);
+    final String testName = "Treppen";
+
     private Spot testSpotInstance() {
         return new Spot(testIdOne, testCoordinates, testName);
+    }
+
+    private SpotDTO testSpotDTOInstance() {
+        return new SpotDTO(testCoordinates, testName);
     }
 
     @BeforeEach
@@ -52,6 +56,22 @@ class SpotServiceTest {
         //THEN
         verify(spotRepository).findAll();
         List<Spot> expected = new ArrayList<>(List.of(testSpot));
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void addSpot_ShouldReturnAddedSpot() {
+        //GIVEN
+        SpotDTO testSpotDTO = testSpotDTOInstance();
+        Spot withoutId = new Spot(null, testSpotDTO.coordinates(), testSpotDTO.name());
+        Spot testSpot = testSpotInstance();
+        Mockito.when(spotRepository.save(withoutId))
+                .thenReturn(testSpot);
+        //WHEN
+        Spot actual = spotService.addSpot(testSpotDTO);
+        Spot expected = testSpotInstance();
+        //THEN
+        verify(spotRepository).save(withoutId);
         assertEquals(expected, actual);
     }
 }

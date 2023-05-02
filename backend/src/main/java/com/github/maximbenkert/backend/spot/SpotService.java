@@ -14,4 +14,8 @@ public class SpotService {
         return spotRepository.findAll();
     }
 
+    public Spot addSpot(SpotDTO spotDTO) {
+       Spot spotToAdd = new Spot(null, spotDTO.coordinates(), spotDTO.name());
+        return spotRepository.save(spotToAdd);
+    }
 }

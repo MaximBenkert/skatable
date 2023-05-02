@@ -10,7 +10,7 @@ export default function SpotGallery(props: Props) {
 
     return (
         <div className="spot-gallery">
-            <Typography sx={{fontSize: "1.5rem", padding: "1rem"}} variant="h2" component="h2">
+            <Typography sx={{fontSize: "3rem", padding: "1rem"}} variant="h2" component="h2">
                 Spots
             </Typography>
             <ul>

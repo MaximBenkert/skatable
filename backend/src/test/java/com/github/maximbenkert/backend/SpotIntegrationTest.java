@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -17,6 +18,7 @@ class SpotIntegrationTest {
 
     @Autowired
     MockMvc mockMvc;
+
     @Test
     void getAllSpots_shouldReturnEmptyList_whenRepoIsEmpty() throws Exception {
         mockMvc.perform(get("/api/spots"))
@@ -25,5 +27,31 @@ class SpotIntegrationTest {
                         []
                         """
                 ));
+    }
+
+    @Test
+    void addSpot_shouldReturnAddedSpot() throws Exception {
+        mockMvc.perform(post("/api/spots")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("""
+                        {
+                           "coordinates": {
+                              "latitude": 37.7749,
+                              "longitude": 12.4194
+                           },
+                           "name": "test"
+                        }
+                        """))
+                .andExpect(status().isOk())
+                .andExpect(content().json("""
+                        {
+                           "coordinates": {
+                              "latitude": 37.7749,
+                              "longitude": 12.4194
+                           },
+                           "name": "test"
+                        }
+                        """))
+                .andExpect(jsonPath("$.id").isNotEmpty());
     }
 }

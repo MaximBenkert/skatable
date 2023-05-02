@@ -1,9 +1,9 @@
 package com.github.maximbenkert.backend.spot;
 
+
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,6 +17,13 @@ public class SpotController {
     List<Spot> getAllSpots(){
         return spotService.getAllSpots();
     }
+
+    @PostMapping
+    Spot addSpot(@RequestBody @Valid SpotDTO spotDTO) {
+        return spotService.addSpot(spotDTO);
+    }
+
+
 
 
 }
