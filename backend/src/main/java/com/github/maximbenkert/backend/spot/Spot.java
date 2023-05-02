@@ -15,13 +15,4 @@ public record Spot(
         Coordinates coordinates,
         String name
 ) {
-        /*Spot(
-                Coordinates coordinates,
-                String name
-        ){
-                this(null, coordinates, name);
-        }
-        public Spot withId(String id) {
-                return new Spot (id, coordinates, name);
-        }*/
 }
