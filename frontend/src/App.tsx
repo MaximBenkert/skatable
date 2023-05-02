@@ -5,7 +5,7 @@ import SpotGallery from "./components/SpotGallery";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Header from "./components/Header";
 import AddSpot from "./components/AddSpot";
-import Footer from "./components/Navigation"
+import Navigation from "./components/Navigation";
 
 function App() {
 
@@ -20,12 +20,12 @@ function App() {
                     <Routes>
                         <Route path="/spots"
                                element={<SpotGallery spots={spots}/>}/>
-                        <Route path="/spots/add"
+                        <Route path="/add"
                                element={<AddSpot addSpot={addSpot}/>}/>
 
                     </Routes>
 
-                    <Footer></Footer>
+                   <Navigation/>
 
                 </div>
 
