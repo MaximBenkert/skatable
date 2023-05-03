@@ -24,9 +24,10 @@ export default function SpotDetails(props: DetailProps) {
                 props.spot
                     ? <div>
                         <Typography>{props.spot.id}</Typography>
+                        <Typography>{props.spot.name}</Typography>
                         <Typography>{props.spot.coordinates.latitude}</Typography>
                         <Typography>{props.spot.coordinates.longitude}</Typography>
-                        <Typography>{props.spot.name}</Typography>
+
                     </div>
                     : <div>... loading </div>
             }

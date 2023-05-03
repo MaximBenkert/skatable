@@ -19,7 +19,7 @@ function App() {
                 <div className="App">
                     <Header/>
                     <Routes>
-                        <Route path="/spots"
+                        <Route path="/"
                                element={<SpotGallery spots={spots}/>}/>
                         <Route path="/add"
                                element={<AddSpot addSpot={addSpot}/>}/>

@@ -26,7 +26,7 @@ export default function AddSpot(props: AddSpotProps) {
         const coordinates: Coordinates = {latitude, longitude}
         const newSpot: NewSpot = {coordinates, name}
         props.addSpot(newSpot)
-        navigate("/spots")
+        navigate("/")
 
 
     }
