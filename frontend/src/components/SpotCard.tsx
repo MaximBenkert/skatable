@@ -10,10 +10,10 @@ export default function SpotCard(props: CardProps) {
 
     return (
         <Card variant="outlined">
-            <small>ID: {props.spot.id}</small>
-            <p>Name: {props.spot.name}</p>
-            <big>Coordinates: {props.spot.coordinates.latitude}</big>
-            <big>Coordinates: {props.spot.coordinates.longitude}</big>
+
+            <p><big>{props.spot.name}</big></p>
+            <small>Coordinates: {props.spot.coordinates.latitude} </small>
+            <small>Coordinates: {props.spot.coordinates.longitude} </small>
         </Card>
     )
 }
