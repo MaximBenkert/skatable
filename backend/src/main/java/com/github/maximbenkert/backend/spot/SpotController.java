@@ -28,9 +28,6 @@ public class SpotController {
     }
     @DeleteMapping("/{id}")
     void deleteSpotById(@PathVariable String id) {
-        if (id.isBlank()) {
-            throw new IllegalArgumentException("ID is empty");
-        }
         spotService.deleteSpotById(id);
     }
 
