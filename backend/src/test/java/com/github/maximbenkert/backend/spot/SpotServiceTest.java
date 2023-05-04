@@ -123,7 +123,7 @@ class SpotServiceTest {
         verify(spotRepository).existsById(testIdOne);
 
         String actual = exception.getMessage();
-        String expected = "Couldn't delete delivery. Id " + testIdOne + " doesn't exist";
+        String expected = "Couldn't delete spot. Id " + testIdOne + " doesn't exist";
         assertEquals(expected, actual);
     }
 }
