@@ -22,7 +22,10 @@ public class SpotController {
     Spot addSpot(@RequestBody @Valid SpotDTO spotDTO) {
         return spotService.addSpot(spotDTO);
     }
-
+    @GetMapping("/{id}")
+    Spot getSpotById(@PathVariable String id) {
+        return spotService.getSpotById(id);
+    }
 
 
 

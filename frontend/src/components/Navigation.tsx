@@ -12,10 +12,10 @@ export default function Navigation() {
 
             <Paper sx={{position: 'fixed', bottom: '0.1rem'}}>
                 <BottomNavigation sx={{width: '100vw', bgcolor: "#228B22"}}>
-                    <NavLink to="/spots">
+                    <NavLink to="/">
                         <BottomNavigationAction
                             label="spots"
-                            value="/spots"
+                            value="/"
                             icon={<HomeIcon/>}
                         />
                     </NavLink>
