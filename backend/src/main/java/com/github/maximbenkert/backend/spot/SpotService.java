@@ -31,6 +31,6 @@ public class SpotService {
         if (spotRepository.existsById(id)) {
             spotRepository.deleteById(id);
         }
-        else throw new NoSuchElementException("Couldn't delete delivery. Id " + id + " doesn't exist");
+        else throw new NoSuchElementException("Couldn't delete spot. Id " + id + " doesn't exist");
     }
 }
