@@ -1,5 +1,7 @@
 package com.github.maximbenkert.backend;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.maximbenkert.backend.spot.Spot;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -18,6 +20,19 @@ class SpotIntegrationTest {
 
     @Autowired
     MockMvc mockMvc;
+    @Autowired
+    ObjectMapper objectMapper;
+
+    String testSpotJsonWithoutId = """
+            {
+               "coordinates": {
+                  "latitude": 37.7749,
+                  "longitude": 12.4194
+               },
+               "name": "test"
+            }
+            """;
+
 
     @Test
     void getAllSpots_shouldReturnEmptyList_whenRepoIsEmpty() throws Exception {
@@ -32,26 +47,39 @@ class SpotIntegrationTest {
     @Test
     void addSpot_shouldReturnAddedSpot() throws Exception {
         mockMvc.perform(post("/api/spots")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("""
-                        {
-                           "coordinates": {
-                              "latitude": 37.7749,
-                              "longitude": 12.4194
-                           },
-                           "name": "test"
-                        }
-                        """))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(testSpotJsonWithoutId))
                 .andExpect(status().isOk())
-                .andExpect(content().json("""
-                        {
-                           "coordinates": {
-                              "latitude": 37.7749,
-                              "longitude": 12.4194
-                           },
-                           "name": "test"
-                        }
-                        """))
+                .andExpect(content().json(testSpotJsonWithoutId))
                 .andExpect(jsonPath("$.id").isNotEmpty());
     }
+
+    @Test
+    void getSpotByIdShouldReturnRequestedSpot() throws Exception {
+        String requested = mockMvc.perform(post("/api/spots")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(testSpotJsonWithoutId))
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+        Spot actualSpot = objectMapper.readValue(requested, Spot.class);
+        String id = actualSpot.id();
+
+
+        mockMvc.perform(get("/api/spots/" + id))
+                .andExpect(status().isOk())
+                .andExpect(content().json("""
+                                 {
+                                 "id": "<ID>",
+                                 "coordinates": {
+                           "latitude": 37.7749,
+                           "longitude": 12.4194
+                        },
+                        "name": "test"
+                                 
+                                 }
+                                 """.replaceFirst("<ID>", id)));
+    }
+
+
 }
