@@ -14,7 +14,6 @@ function App() {
 
     return (
         <main>
-
             <BrowserRouter>
                 <div className="App">
                     <Header/>
@@ -29,17 +28,10 @@ function App() {
                             <SpotDetails spot={spot}
                                          loadSpotById={loadSpotByID}></SpotDetails>}
                         />
-
                     </Routes>
-
                    <Navigation/>
-
                 </div>
-
-
             </BrowserRouter>
-
-
         </main>
 
     );

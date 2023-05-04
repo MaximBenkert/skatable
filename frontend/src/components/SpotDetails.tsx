@@ -27,10 +27,10 @@ export default function SpotDetails(props: DetailProps) {
                 </Typography>
                 {props.spot ?
                     <Card variant="outlined" sx={{p: "0.8rem"}}>
-                        <small>ID: {props.spot.id}</small>
-                        <p>Spotname: {props.spot.name}</p>
-                        <p>Latitude: {props.spot.coordinates.latitude}</p>
-                        <p>Longitude: {props.spot.coordinates.longitude}</p>
+                        <p>{props.spot.name}</p>
+                        <p> Coordinates: </p>
+                        <small>Latitude: {props.spot.coordinates.latitude}, </small>
+                        <small>Longitude: {props.spot.coordinates.longitude}</small>
                         <ButtonGroup sx={{display: "flex", justifyContent: "space-between"}} variant="text"
                                      aria-label="text button group">
                             <Button variant="outlined"

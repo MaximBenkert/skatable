@@ -17,8 +17,10 @@ export default function SpotCard(props: CardProps) {
     }
     return (
     <Card variant="outlined" className="details-card">
-        <small> ID: {props.spot.id}</small>
-        <p>Title: {props.spot.name}</p>
+        <big>{props.spot.name}</big>
+        <p> Coordinates: </p>
+        <small>Latitude: {props.spot.coordinates.latitude}, </small>
+        <small>Longitude: {props.spot.coordinates.longitude}</small>
         <ButtonGroup sx={{display: "flex", justifyContent: "space-between"}} variant="text"
                      aria-label="text button group">
             <Button variant="outlined"
