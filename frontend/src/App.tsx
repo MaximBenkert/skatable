@@ -10,7 +10,7 @@ import SpotDetails from "./components/SpotDetails";
 
 function App() {
 
-    const {spot, spots, addSpot, loadSpotByID} = useSpots()
+    const {spot, spots, addSpot, loadSpotByID, deleteSpot} = useSpots()
 
     return (
         <main>
@@ -20,7 +20,8 @@ function App() {
                     <Header/>
                     <Routes>
                         <Route path="/"
-                               element={<SpotGallery spots={spots}/>}/>
+                               element={<SpotGallery spots={spots}
+                                                     deleteSpot={deleteSpot}/>}/>
                         <Route path="/add"
                                element={<AddSpot addSpot={addSpot}/>}/>
                         <Route path="/details/:id"
