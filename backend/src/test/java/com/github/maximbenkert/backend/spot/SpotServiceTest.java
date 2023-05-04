@@ -6,6 +6,8 @@ import org.mockito.Mockito;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
@@ -73,5 +75,31 @@ class SpotServiceTest {
         //THEN
         verify(spotRepository).save(withoutId);
         assertEquals(expected, actual);
+    }
+    @Test
+    void getSpotById_shouldReturnRequestedSpot()  {
+        Spot requested = testSpotInstance();
+
+        Mockito.when(spotRepository.findById(requested.id()))
+                .thenReturn(Optional.of(requested));
+
+        Spot actual = spotService.getSpotById(requested.id());
+
+        verify(spotRepository).findById(requested.id());
+        assertEquals(requested, actual);
+    }
+    @Test
+    void getSpotById_shouldThrowException_whenInvalidId() {
+        String errorMessage = "Spot with ID ' " + testIdOne + " ' not found!";
+
+        Mockito.when(spotRepository.findById(testIdOne))
+                .thenThrow(new NoSuchElementException(errorMessage));
+
+        Exception exception = assertThrows(NoSuchElementException.class,
+        () -> spotService.getSpotById(testIdOne));
+
+        verify(spotRepository).findById(testIdOne);
+        assertEquals(errorMessage, exception.getMessage());
+
     }
 }
