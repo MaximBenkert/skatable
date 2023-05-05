@@ -25,7 +25,7 @@ export default function useSpots() {
             .then((response) => {
                 setSpot(response.data)
             })
-            .catch((error) => {
+            .catch(() => {
                 toast.error("Spot not found!")
             })
     }
@@ -37,5 +37,13 @@ export default function useSpots() {
                 .catch(reason => console.error(reason))
         }
 
-    return {spot, spots, addSpot, loadSpotByID}
+        function deleteSpot(id: string) {
+        axios.delete("/api/spots/" + id)
+            .then(() => {
+                setSpots(spots.filter((spot) => spot.id !== id))
+            })
+            .catch(console.error)
+        }
+
+    return {spot, spots, addSpot, loadSpotByID, deleteSpot}
 }

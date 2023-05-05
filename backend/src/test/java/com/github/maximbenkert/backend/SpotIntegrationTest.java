@@ -81,5 +81,26 @@ class SpotIntegrationTest {
                                  """.replaceFirst("<ID>", id)));
     }
 
+    @Test
+    void expectSuccessfulDelete() throws Exception {
+        String saveResult = mockMvc.perform(post("/api/spots")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(testSpotJsonWithoutId))
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+        Spot savedSpot = objectMapper.readValue(saveResult, Spot.class);
+        String id = savedSpot.id();
+
+        mockMvc.perform(delete("/api/spots/" + id))
+                .andExpect(status().isOk());
+
+        mockMvc.perform(get("/api/spots"))
+                .andExpect(status().isOk())
+                .andExpect(content().json("""
+                        []
+                        """));
+
+    }
 
 }

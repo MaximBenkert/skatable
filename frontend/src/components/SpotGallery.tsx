@@ -4,6 +4,7 @@ import SpotCard from "./SpotCard";
 
 type Props = {
     spots: Spot[]
+    deleteSpot: (id:string) => void
 }
 
 export default function SpotGallery(props: Props) {
@@ -16,7 +17,7 @@ export default function SpotGallery(props: Props) {
             <ul>
                 {props.spots.map((spot) => {
                     return (
-                        <SpotCard key={spot.id} spot={spot}/>
+                        <SpotCard key={spot.id} spot={spot} deleteSpot={props.deleteSpot}/>
                     )
                 })
                 }

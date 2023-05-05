@@ -26,4 +26,11 @@ public class SpotService {
                 .orElseThrow(() -> new NoSuchElementException(errorMessage));
 
     }
+
+    public void deleteSpotById(String id) {
+        if (spotRepository.existsById(id)) {
+            spotRepository.deleteById(id);
+        }
+        else throw new NoSuchElementException("Couldn't delete spot. Id " + id + " doesn't exist");
+    }
 }

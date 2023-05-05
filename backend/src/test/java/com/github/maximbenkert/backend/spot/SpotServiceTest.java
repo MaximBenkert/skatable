@@ -100,6 +100,30 @@ class SpotServiceTest {
 
         verify(spotRepository).findById(testIdOne);
         assertEquals(errorMessage, exception.getMessage());
+    }
 
+    @Test
+    void deleteSpotById_ShouldDeleteSpot() {
+        Mockito.when(spotRepository.existsById(testIdOne))
+                .thenReturn(true);
+
+        spotService.deleteSpotById((testIdOne));
+
+        verify(spotRepository).existsById(testIdOne);
+    }
+
+    @Test
+    void deleteSpotById_shouldThrowException_whenInvalidId() {
+        Mockito.when(spotRepository.existsById(testIdOne))
+                .thenReturn(false);
+
+        Exception exception = assertThrows(NoSuchElementException.class,
+        () -> spotService.deleteSpotById(testIdOne));
+
+        verify(spotRepository).existsById(testIdOne);
+
+        String actual = exception.getMessage();
+        String expected = "Couldn't delete spot. Id " + testIdOne + " doesn't exist";
+        assertEquals(expected, actual);
     }
 }

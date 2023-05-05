@@ -26,6 +26,10 @@ public class SpotController {
     Spot getSpotById(@PathVariable String id) {
         return spotService.getSpotById(id);
     }
+    @DeleteMapping("/{id}")
+    void deleteSpotById(@PathVariable String id) {
+        spotService.deleteSpotById(id);
+    }
 
 
 
