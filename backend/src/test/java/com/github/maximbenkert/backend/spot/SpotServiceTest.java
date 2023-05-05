@@ -26,7 +26,7 @@ class SpotServiceTest {
     }
 
     private SpotDTO testSpotDTOInstance() {
-        return new SpotDTO(testCoordinates, testName);
+        return new SpotDTO(null, testCoordinates, testName);
     }
 
     @BeforeEach
