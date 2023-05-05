@@ -33,4 +33,9 @@ public class SpotService {
         }
         else throw new NoSuchElementException("Couldn't delete spot. Id " + id + " doesn't exist");
     }
+
+    public Spot updateSpot(SpotDTO spotDTO) {
+        Spot spot = new Spot(spotDTO.id(), spotDTO.coordinates(), spotDTO.name());
+        return spotRepository.save(spot);
+    }
 }
