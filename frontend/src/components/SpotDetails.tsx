@@ -23,7 +23,7 @@ export default function SpotDetails(props: DetailProps) {
         <Container maxWidth="lg">
             <Box sx={{bgcolor: '#efebe9', p: "1rem", pb: "3rem"}}>
                 <Typography sx={{fontSize: "1.5rem", padding: "1rem"}} variant="h2" component="h2">
-                    Delivery Details
+                    Spot Details
                 </Typography>
                 {props.spot ?
                     <Card variant="outlined" sx={{p: "0.8rem"}}>
