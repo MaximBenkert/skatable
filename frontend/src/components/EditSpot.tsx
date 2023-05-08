@@ -1,19 +1,22 @@
-import {NewSpot, Spot} from "../models/Spot";
 import {useNavigate, useParams} from "react-router-dom";
 import {FormEvent, useEffect, useState} from "react";
 import {Button, FormControl, FormHelperText, Input, InputLabel, TextField} from "@mui/material";
+import {Spot} from "../models/Spot";
 
 type EditProps = {
     loadSpotById: (id: string) => void,
-    spotToUpdate: Spot
-    updateSpot: (newSpot: Spot) => void
+    updateSpot: (spot: Spot) => void
+    spot: Spot
 }
 
 export default function EditDelivery(props: EditProps) {
     const {id} = useParams();
     const navigate = useNavigate();
-    const initialState: Spot = props.spotToUpdate
-    const [newSpot, setNewSpot] = useState <Spot>(initialState)
+
+    const [name, setName] = useState<string>("")
+    const [latitude, setLatitude] = useState<number>(50.9412)
+    const [longitude, setLongitude] = useState<number>(6.9582)
+
 
     useEffect(() => {
         if (id) {
@@ -22,9 +25,11 @@ export default function EditDelivery(props: EditProps) {
         //eslint-disable-next-line
     }, [id])
 
-    function onUpdateSpot (event: FormEvent<HTMLFormElement>) {
+    function onUpdateSpot(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
-        if(id) {props.updateSpot(newSpot)}
+        if (id) {
+            props.updateSpot(props.spot)
+        }
         navigate("/")
     }
 
@@ -34,11 +39,12 @@ export default function EditDelivery(props: EditProps) {
             <form onSubmit={onUpdateSpot}>
                 <TextField label='name'
                            required
-                           value={newSpot.name}
+                           value={name}
                            onChange={(event) => {
-                               setNewSpot.name(event.target.value)
-                           }}/>
+                               setName(event.target.value)
 
+                           }
+                           }/>
 
                 <FormControl>
                     <InputLabel htmlFor="latitude">Latitude</InputLabel>
@@ -51,9 +57,9 @@ export default function EditDelivery(props: EditProps) {
                             max: 90,
                         }}
                         required
-                        value={newSpot.coordinates.latitude}
+                        value={latitude}
                         error={latitude < -90 || latitude > 90}
-                        onChange={(event) => setNewSpot.name(parseFloat(event.target.value))}
+                        onChange={(event) => setLatitude(parseFloat(event.target.value))}
                     />
                     {latitude < -90 || latitude > 90 ? <FormHelperText>Invalid latitude value</FormHelperText> : null}
                 </FormControl>
@@ -69,11 +75,12 @@ export default function EditDelivery(props: EditProps) {
                             max: 180,
                         }}
                         required
-                        value={newSpot.coordinates.longitude}
+                        value={longitude}
                         error={longitude < -180 || longitude > 180}
-                        onChange={(event) => setNewSpot.(parseFloat(event.target.value))}
+                        onChange={(event) => setLongitude(parseFloat(event.target.value))}
                     />
-                    {longitude < -180 || longitude > 180 ? <FormHelperText>Invalid longitude value</FormHelperText> : null}
+                    {longitude < -180 || longitude > 180 ?
+                        <FormHelperText>Invalid longitude value</FormHelperText> : null}
                 </FormControl>
 
 
