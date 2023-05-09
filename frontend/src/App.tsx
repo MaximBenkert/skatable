@@ -11,7 +11,7 @@ import EditSpot from "./components/EditSpot";
 
 function App() {
 
-    const {spot, spots, addSpot, loadSpotByID, deleteSpot, updateSpot} = useSpots()
+    const {spot, setSpot, spots, addSpot, loadSpotByID, deleteSpot, updateSpot} = useSpots()
 
     return (
         <main>
@@ -32,8 +32,9 @@ function App() {
                         <Route path="/edit/:id"
                                element={
                                    <EditSpot loadSpotById={loadSpotByID}
-                                             spot={spot}
                                              updateSpot={updateSpot}
+                                             spot={spot}
+                                             setSpot={setSpot}
                                    ></EditSpot>}/>
                     </Routes>
                    <Navigation/>

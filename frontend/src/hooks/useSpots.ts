@@ -46,7 +46,7 @@ export default function useSpots() {
         }
 
         function updateSpot(spot: Spot) {
-        axios.put("/api/spots" + spot.id, spot)
+        axios.put("/api/spots/" + spot.id, spot)
             .then((putSpotResponse) => {
                 setSpots(spots.map(currentSpot => {
                     if (currentSpot.id === spot.id) {
@@ -60,5 +60,5 @@ export default function useSpots() {
             .catch(reason => console.error(reason))
         }
 
-    return {spot, spots, addSpot, loadSpotByID, deleteSpot, updateSpot}
+    return {spot, setSpot, spots, addSpot, loadSpotByID, deleteSpot, updateSpot}
 }

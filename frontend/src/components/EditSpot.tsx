@@ -1,22 +1,18 @@
 import {useNavigate, useParams} from "react-router-dom";
-import {FormEvent, useEffect, useState} from "react";
+import {Dispatch, FormEvent, SetStateAction, useEffect} from "react";
 import {Button, FormControl, FormHelperText, Input, InputLabel, TextField} from "@mui/material";
 import {Spot} from "../models/Spot";
 
 type EditProps = {
     loadSpotById: (id: string) => void,
     updateSpot: (spot: Spot) => void
-    spot: Spot
+    spot: Spot,
+    setSpot: Dispatch<SetStateAction<Spot>>
 }
 
 export default function EditDelivery(props: EditProps) {
     const {id} = useParams();
     const navigate = useNavigate();
-
-    const [name, setName] = useState<string>("")
-    const [latitude, setLatitude] = useState<number>(50.9412)
-    const [longitude, setLongitude] = useState<number>(6.9582)
-
 
     useEffect(() => {
         if (id) {
@@ -33,18 +29,23 @@ export default function EditDelivery(props: EditProps) {
         navigate("/")
     }
 
-
+    /*function onChange(event: ChangeEvent<HTMLTextAreaElement>) {
+        const spotName: string = event.target.name;
+        const value: string = event.target.value;
+        if (id) {
+            setSpot(
+                {...spot, id: id, [spotName]: value}
+            )
+        }
+    }*/
     return (
         <div>
             <form onSubmit={onUpdateSpot}>
-                <TextField label='name'
-                           required
-                           value={name}
-                           onChange={(event) => {
-                               setName(event.target.value)
 
-                           }
-                           }/>
+                <TextField label='name'
+                           value={props.spot.name}
+                           onChange={(event) => props.setSpot({...props.spot, name: event.target.value})}
+                />
 
                 <FormControl>
                     <InputLabel htmlFor="latitude">Latitude</InputLabel>
@@ -57,11 +58,11 @@ export default function EditDelivery(props: EditProps) {
                             max: 90,
                         }}
                         required
-                        value={latitude}
-                        error={latitude < -90 || latitude > 90}
-                        onChange={(event) => setLatitude(parseFloat(event.target.value))}
+                        value={props.spot.coordinates.latitude}
+                        error={props.spot.coordinates.latitude < -90 || props.spot.coordinates.latitude > 90}
+                        onChange={(event) => props.setSpot({...props.spot, coordinates: { ...props.spot.coordinates, latitude: parseFloat(event.target.value)}})}
                     />
-                    {latitude < -90 || latitude > 90 ? <FormHelperText>Invalid latitude value</FormHelperText> : null}
+                    {props.spot.coordinates.latitude < -90 || props.spot.coordinates.latitude > 90 ? <FormHelperText>Invalid latitude value</FormHelperText> : null}
                 </FormControl>
 
                 <FormControl>
@@ -75,11 +76,11 @@ export default function EditDelivery(props: EditProps) {
                             max: 180,
                         }}
                         required
-                        value={longitude}
-                        error={longitude < -180 || longitude > 180}
-                        onChange={(event) => setLongitude(parseFloat(event.target.value))}
+                        value={props.spot.coordinates.longitude}
+                        error={props.spot.coordinates.longitude < -180 || props.spot.coordinates.longitude > 180}
+                        onChange={(event) => props.setSpot({...props.spot, coordinates: { ...props.spot.coordinates, longitude: parseFloat(event.target.value)}})}
                     />
-                    {longitude < -180 || longitude > 180 ?
+                    {props.spot.coordinates.longitude < -180 || props.spot.coordinates.longitude > 180 ?
                         <FormHelperText>Invalid longitude value</FormHelperText> : null}
                 </FormControl>
 
@@ -89,13 +90,9 @@ export default function EditDelivery(props: EditProps) {
                     variant='contained'
                     color="success"
                     type='submit'
-                >Save</Button>
+                >update</Button>
 
             </form>
         </div>
-
-
     )
-
-
 }
