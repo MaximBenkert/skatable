@@ -36,6 +36,9 @@ public class SpotService {
 
     public Spot updateSpot(SpotDTO spotDTO) {
         Spot spot = new Spot(spotDTO.id(), spotDTO.coordinates(), spotDTO.name());
-        return spotRepository.save(spot);
+        if (spotRepository.existsById(spot.id())) {
+            return spotRepository.save(spot);
+        }
+        throw new NoSuchElementException("Couldn't update spot. Id " + spot.id() + " doesn't exist");
     }
 }
