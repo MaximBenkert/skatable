@@ -102,4 +102,29 @@ class SpotIntegrationTest {
 
     }
 
+    @Test
+    void expectSuccessfulUpdate() throws Exception {
+        String putResult = mockMvc.perform(post("/api/spots")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(testSpotJsonWithoutId))
+                .andExpect(status().isOk())
+                .andExpect(content().json(testSpotJsonWithoutId))
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+
+
+        Spot addedSpot = objectMapper.readValue(putResult, Spot.class);
+        Coordinates newCoordinates = new Coordinates (0, 0);
+        Spot toUpdate = new Spot(addedSpot.id(), (newCoordinates), "Rail" );
+        String spotToUpdateJson = objectMapper.writeValueAsString(toUpdate);
+
+        mockMvc.perform(put("/api/spots/" + toUpdate.id())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(spotToUpdateJson))
+                .andExpect(status().isOk())
+                .andExpect(content().string(spotToUpdateJson)
+                );
+    }
+
 }
