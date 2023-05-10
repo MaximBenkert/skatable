@@ -144,6 +144,7 @@ class SpotServiceTest {
         Spot actual = spotService.updateSpot(spotDTOToUpdate);
         Spot expected = testSpotInstance();
         //THEN
+        verify(spotRepository).existsById(toUpdate.id());
         verify(spotRepository).save(toUpdate);
         assertEquals(expected, actual);
     }
