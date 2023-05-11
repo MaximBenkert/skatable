@@ -28,16 +28,6 @@ export default function EditDelivery(props: EditProps) {
         }
         navigate("/")
     }
-
-    /*function onChange(event: ChangeEvent<HTMLTextAreaElement>) {
-        const spotName: string = event.target.name;
-        const value: string = event.target.value;
-        if (id) {
-            setSpot(
-                {...spot, id: id, [spotName]: value}
-            )
-        }
-    }*/
     return (
         <div>
             <form onSubmit={onUpdateSpot}>
