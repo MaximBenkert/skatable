@@ -32,6 +32,8 @@ class SpotIntegrationTest {
             }
             """;
 
+    Coordinates newCoordinates = new Coordinates(0, 0);
+
 
     @Test
     void getAllSpots_shouldReturnEmptyList_whenRepoIsEmpty() throws Exception {
@@ -115,8 +117,8 @@ class SpotIntegrationTest {
 
 
         Spot addedSpot = objectMapper.readValue(putResult, Spot.class);
-        Coordinates newCoordinates = new Coordinates (0, 0);
-        Spot toUpdate = new Spot(addedSpot.id(), (newCoordinates), "Rail" );
+
+        Spot toUpdate = new Spot(addedSpot.id(), (newCoordinates), "Rail");
         String spotToUpdateJson = objectMapper.writeValueAsString(toUpdate);
 
         mockMvc.perform(put("/api/spots/" + toUpdate.id())
@@ -125,6 +127,24 @@ class SpotIntegrationTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string(spotToUpdateJson)
                 );
+    }
+
+    @Test
+    void updateSpot_shouldFail_whenBodyIdAndUrlIdAreNotEqual() throws Exception {
+        String bodyId = "1";
+        String urlId = "123";
+        Spot spotToUpdate = new Spot(bodyId, newCoordinates, "something");
+        String spotToUpdateJson = objectMapper.writeValueAsString(spotToUpdate);
+        String expectedBody = "{\"message\": \"The id in the url does not match the request body's id\"}";
+
+
+        mockMvc.perform(put("/api/spots/" + urlId)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(spotToUpdateJson))
+                .andExpect(status().isBadRequest());
+                /*.andExpect(content().json(expectedBody))
+                .andExpect(jsonPath("$.timestamp").isNotEmpty());*/
+
     }
 
 }
