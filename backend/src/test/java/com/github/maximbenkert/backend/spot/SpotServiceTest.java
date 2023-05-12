@@ -26,7 +26,7 @@ class SpotServiceTest {
     }
 
     private SpotDTO testSpotDTOInstance() {
-        return new SpotDTO(testCoordinates, testName);
+        return new SpotDTO(testIdOne, testCoordinates, testName);
     }
 
     @BeforeEach
@@ -76,8 +76,9 @@ class SpotServiceTest {
         verify(spotRepository).save(withoutId);
         assertEquals(expected, actual);
     }
+
     @Test
-    void getSpotById_shouldReturnRequestedSpot()  {
+    void getSpotById_shouldReturnRequestedSpot() {
         Spot requested = testSpotInstance();
 
         Mockito.when(spotRepository.findById(requested.id()))
@@ -88,6 +89,7 @@ class SpotServiceTest {
         verify(spotRepository).findById(requested.id());
         assertEquals(requested, actual);
     }
+
     @Test
     void getSpotById_shouldThrowException_whenInvalidId() {
         String errorMessage = "Spot with ID ' " + testIdOne + " ' not found!";
@@ -96,7 +98,7 @@ class SpotServiceTest {
                 .thenThrow(new NoSuchElementException(errorMessage));
 
         Exception exception = assertThrows(NoSuchElementException.class,
-        () -> spotService.getSpotById(testIdOne));
+                () -> spotService.getSpotById(testIdOne));
 
         verify(spotRepository).findById(testIdOne);
         assertEquals(errorMessage, exception.getMessage());
@@ -118,12 +120,49 @@ class SpotServiceTest {
                 .thenReturn(false);
 
         Exception exception = assertThrows(NoSuchElementException.class,
-        () -> spotService.deleteSpotById(testIdOne));
+                () -> spotService.deleteSpotById(testIdOne));
 
         verify(spotRepository).existsById(testIdOne);
 
         String actual = exception.getMessage();
         String expected = "Couldn't delete spot. Id " + testIdOne + " doesn't exist";
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void updateSpot_shouldUpdateSpot() {
+        //GIVEN
+        SpotDTO spotDTOToUpdate = testSpotDTOInstance();
+        Spot toUpdate = new Spot(spotDTOToUpdate.id(), spotDTOToUpdate.coordinates(), spotDTOToUpdate.name());
+        Spot spot = testSpotInstance();
+
+        Mockito.when(spotRepository.existsById(toUpdate.id()))
+                .thenReturn(true);
+        Mockito.when(spotRepository.save(toUpdate))
+                .thenReturn(spot);
+        //WHEN
+        Spot actual = spotService.updateSpot(spotDTOToUpdate);
+        Spot expected = testSpotInstance();
+        //THEN
+        verify(spotRepository).existsById(toUpdate.id());
+        verify(spotRepository).save(toUpdate);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void updateSpot_ShouldThrowNoSuchElementException_whenIdNotExisting() {
+        Spot spot = testSpotInstance();
+        SpotDTO spotDTO = testSpotDTOInstance();
+        Mockito.when(spotRepository.existsById(spot.id()))
+                .thenReturn(false);
+
+        Exception exception = assertThrows(NoSuchElementException.class,
+                () -> spotService.updateSpot(spotDTO));
+
+        verify(spotRepository).existsById(spot.id());
+
+        String actual = exception.getMessage();
+        String expected = "Couldn't update spot. Id " + spot.id() + " doesn't exist";
         assertEquals(expected, actual);
     }
 }

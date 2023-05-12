@@ -2,6 +2,7 @@ import {Spot} from "../models/Spot";
 import {useNavigate, useParams} from "react-router-dom";
 import React, {useEffect} from "react";
 import {Box, Button, ButtonGroup, Card, Container, Typography} from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
 
 type DetailProps = {
     loadSpotById: (id: string) => void;
@@ -35,6 +36,8 @@ export default function SpotDetails(props: DetailProps) {
                                      aria-label="text button group">
                             <Button variant="outlined"
                                     onClick={() => navigate(`/`)}>Back</Button>
+                            <Button className="button" variant="contained" endIcon={<EditIcon/>}
+                                    onClick={() => navigate(`/edit/${props.spot.id}`)}>Edit</Button>
                         </ButtonGroup>
 
                     </Card>

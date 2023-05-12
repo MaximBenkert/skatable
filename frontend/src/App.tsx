@@ -7,10 +7,11 @@ import Header from "./components/Header";
 import AddSpot from "./components/AddSpot";
 import Navigation from "./components/Navigation";
 import SpotDetails from "./components/SpotDetails";
+import EditSpot from "./components/EditSpot";
 
 function App() {
 
-    const {spot, spots, addSpot, loadSpotByID, deleteSpot} = useSpots()
+    const {spot, setSpot, spots, addSpot, loadSpotByID, deleteSpot, updateSpot} = useSpots()
 
     return (
         <main>
@@ -28,6 +29,13 @@ function App() {
                             <SpotDetails spot={spot}
                                          loadSpotById={loadSpotByID}></SpotDetails>}
                         />
+                        <Route path="/edit/:id"
+                               element={
+                                   <EditSpot loadSpotById={loadSpotByID}
+                                             updateSpot={updateSpot}
+                                             spot={spot}
+                                             setSpot={setSpot}
+                                   ></EditSpot>}/>
                     </Routes>
                    <Navigation/>
                 </div>

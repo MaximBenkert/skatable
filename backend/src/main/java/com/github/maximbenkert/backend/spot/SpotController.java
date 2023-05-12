@@ -3,7 +3,9 @@ package com.github.maximbenkert.backend.spot;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -29,6 +31,14 @@ public class SpotController {
     @DeleteMapping("/{id}")
     void deleteSpotById(@PathVariable String id) {
         spotService.deleteSpotById(id);
+    }
+
+    @PutMapping("/{id}")
+    Spot updateSpot (@PathVariable String id, @RequestBody SpotDTO spotDTO) {
+        if (!spotDTO.id().equals(id)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+        return spotService.updateSpot(spotDTO);
     }
 
 

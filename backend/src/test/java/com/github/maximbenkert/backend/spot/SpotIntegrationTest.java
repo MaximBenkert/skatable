@@ -1,7 +1,6 @@
-package com.github.maximbenkert.backend;
+package com.github.maximbenkert.backend.spot;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.maximbenkert.backend.spot.Spot;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -32,6 +31,8 @@ class SpotIntegrationTest {
                "name": "test"
             }
             """;
+
+    Coordinates newCoordinates = new Coordinates(0, 0);
 
 
     @Test
@@ -101,6 +102,45 @@ class SpotIntegrationTest {
                         []
                         """));
 
+    }
+
+    @Test
+    void expectSuccessfulUpdate() throws Exception {
+        String putResult = mockMvc.perform(post("/api/spots")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(testSpotJsonWithoutId))
+                .andExpect(status().isOk())
+                .andExpect(content().json(testSpotJsonWithoutId))
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+
+
+        Spot addedSpot = objectMapper.readValue(putResult, Spot.class);
+
+        Spot toUpdate = new Spot(addedSpot.id(), (newCoordinates), "Rail");
+        String spotToUpdateJson = objectMapper.writeValueAsString(toUpdate);
+
+        mockMvc.perform(put("/api/spots/" + toUpdate.id())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(spotToUpdateJson))
+                .andExpect(status().isOk())
+                .andExpect(content().string(spotToUpdateJson)
+                );
+    }
+
+    @Test
+    void updateSpot_shouldFail_whenBodyIdAndUrlIdAreNotEqual() throws Exception {
+        String bodyId = "1";
+        String urlId = "123";
+        Spot spotToUpdate = new Spot(bodyId, newCoordinates, "something");
+        String spotToUpdateJson = objectMapper.writeValueAsString(spotToUpdate);
+
+
+        mockMvc.perform(put("/api/spots/" + urlId)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(spotToUpdateJson))
+                .andExpect(status().isBadRequest());
     }
 
 }
