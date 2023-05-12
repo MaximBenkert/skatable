@@ -36,7 +36,7 @@ public class SpotController {
     @PutMapping("/{id}")
     Spot updateSpot (@PathVariable String id, @RequestBody SpotDTO spotDTO) {
         if (!spotDTO.id().equals(id)) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The id in the url does not match the request body's id");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
         return spotService.updateSpot(spotDTO);
     }

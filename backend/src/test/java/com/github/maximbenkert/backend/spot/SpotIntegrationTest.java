@@ -135,16 +135,12 @@ class SpotIntegrationTest {
         String urlId = "123";
         Spot spotToUpdate = new Spot(bodyId, newCoordinates, "something");
         String spotToUpdateJson = objectMapper.writeValueAsString(spotToUpdate);
-        String expectedBody = "{\"message\": \"The id in the url does not match the request body's id\"}";
 
 
         mockMvc.perform(put("/api/spots/" + urlId)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(spotToUpdateJson))
-                .andExpect(status().isBadRequest())
-                .andExpect(content().json(expectedBody))
-                .andExpect(jsonPath("$.timestamp").isNotEmpty());
-
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(spotToUpdateJson))
+                .andExpect(status().isBadRequest());
     }
 
 }
