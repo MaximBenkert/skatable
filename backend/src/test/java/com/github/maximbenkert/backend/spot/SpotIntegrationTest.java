@@ -141,9 +141,9 @@ class SpotIntegrationTest {
         mockMvc.perform(put("/api/spots/" + urlId)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(spotToUpdateJson))
-                .andExpect(status().isBadRequest());
-                /*.andExpect(content().json(expectedBody))
-                .andExpect(jsonPath("$.timestamp").isNotEmpty());*/
+                .andExpect(status().isBadRequest())
+                .andExpect(content().json(expectedBody))
+                .andExpect(jsonPath("$.timestamp").isNotEmpty());
 
     }
 
