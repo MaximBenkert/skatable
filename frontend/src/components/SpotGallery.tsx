@@ -1,6 +1,7 @@
 import {Spot} from "../models/Spot";
 import {Typography} from "@mui/material";
 import SpotCard from "./SpotCard";
+import SpotMap from "./SpotMap";
 
 type Props = {
     spots: Spot[]
@@ -14,6 +15,7 @@ export default function SpotGallery(props: Props) {
             <Typography sx={{fontSize: "3rem", padding: "1rem"}} variant="h2" component="h2">
                 Spots
             </Typography>
+            <SpotMap></SpotMap>
             <ul>
                 {props.spots.map((spot) => {
                     return (
