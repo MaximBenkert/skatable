@@ -1,0 +1,12 @@
+.spotgallery {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.spotgallery > div {
+    width: 100%;
+    padding: 0;
+}

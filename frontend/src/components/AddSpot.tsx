@@ -3,6 +3,7 @@ import {FormEvent, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {Coordinates} from "../models/Coordinates";
 import {Button, FormControl, FormHelperText, Input, InputLabel, TextField} from "@mui/material";
+import './Form.css'
 
 type AddSpotProps = {
     addSpot: (newSpot: NewSpot) => void
@@ -33,7 +34,7 @@ export default function AddSpot(props: AddSpotProps) {
 
     return (
         <div>
-            <form onSubmit={onSaveSpot}>
+            <form className="form" onSubmit={onSaveSpot}>
                 <TextField label='name'
                            required
                            value={name}

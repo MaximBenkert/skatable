@@ -2,6 +2,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import {Dispatch, FormEvent, SetStateAction, useEffect} from "react";
 import {Button, FormControl, FormHelperText, Input, InputLabel, TextField} from "@mui/material";
 import {Spot} from "../models/Spot";
+import './Form.css'
 
 type EditProps = {
     loadSpotById: (id: string) => void,
@@ -30,7 +31,7 @@ export default function EditDelivery(props: EditProps) {
     }
     return (
         <div>
-            <form onSubmit={onUpdateSpot}>
+            <form className="form" onSubmit={onUpdateSpot}>
 
                 <TextField label='name'
                            value={props.spot.name}
