@@ -7,10 +7,11 @@ import AddSpot from "./components/AddSpot";
 import Navigation from "./components/Navigation";
 import SpotDetails from "./components/SpotDetails";
 import EditSpot from "./components/EditSpot";
+import SpotMap from "./components/SpotMap";
 
 function App() {
 
-    const {spot, setSpot, spots, addSpot, loadSpotByID, deleteSpot, updateSpot} = useSpots()
+    const {spot, setSpot, spots, setSpots, addSpot, loadSpotByID, deleteSpot, updateSpot} = useSpots()
 
     return (
         <main>
@@ -20,6 +21,13 @@ function App() {
                         <Route path="/"
                                element={<SpotGallery spots={spots}
                                                      deleteSpot={deleteSpot}/>}/>
+
+
+                        <Route path="/map"
+                               element={<SpotMap spots={spots} setSpots={setSpots} spot={spot} setSpot={setSpot}/>}
+                        />
+
+
                         <Route path="/add"
                                element={<AddSpot addSpot={addSpot}/>}/>
                         <Route path="/details/:id"
