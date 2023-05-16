@@ -14,24 +14,14 @@ type AddSpotProps = {
 export default function AddSpot(props: AddSpotProps) {
 
     const navigate = useNavigate()
-
     const [spot, setSpot] = useState<Spot>({id: "", coordinates: {latitude: 0, longitude: 0}, name: ""})
-
-   // const [name, setName] = useState<string>("")
-   // const [latitude, setLatitude] = useState<number>(50.9412)
-   // const [longitude, setLongitude] = useState<number>(6.9582)
-   // const coordinates: Coordinates = {latitude, longitude}
-  //  const newSpot: NewSpot = {coordinates, name}
-
 
     function onSaveSpot(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
-
         if (spot.name === undefined || spot.name === "") {
             console.error("name required")
             return
         }
-
         props.addSpot(spot)
         navigate("/")
     }
