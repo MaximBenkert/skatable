@@ -3,12 +3,15 @@ import {Dispatch, FormEvent, SetStateAction, useEffect} from "react";
 import {Button, FormControl, FormHelperText, Input, InputLabel, TextField} from "@mui/material";
 import {Spot} from "../models/Spot";
 import './Form.css'
+import SpotMapForEdit from "./SpotMapForEdit";
 
 type EditProps = {
     loadSpotById: (id: string) => void,
     updateSpot: (spot: Spot) => void
     spot: Spot,
     setSpot: Dispatch<SetStateAction<Spot>>
+    spots: Spot [],
+    setSpots: Dispatch<SetStateAction<Spot []>>
 }
 
 export default function EditDelivery(props: EditProps) {
@@ -27,12 +30,13 @@ export default function EditDelivery(props: EditProps) {
         if (id) {
             props.updateSpot(props.spot)
         }
-        navigate("/")
+        navigate("/map")
     }
     return (
         <div>
-            <form className="form" onSubmit={onUpdateSpot}>
+            <SpotMapForEdit spot={props.spot} setSpot={props.setSpot} spots={props.spots} setSpots={props.setSpots} loadSpotById={props.loadSpotById}/>
 
+            <form className="form" onSubmit={onUpdateSpot}>
                 <TextField label='name'
                            value={props.spot.name}
                            onChange={(event) => props.setSpot({...props.spot, name: event.target.value})}
@@ -44,7 +48,7 @@ export default function EditDelivery(props: EditProps) {
                         id="latitude"
                         type="number"
                         inputProps={{
-                            step: 0.0001,
+                            step: 0.0000000000000000000001,
                             min: -90,
                             max: 90,
                         }}
@@ -62,7 +66,7 @@ export default function EditDelivery(props: EditProps) {
                         id="longitude"
                         type="number"
                         inputProps={{
-                            step: 0.0001,
+                            step: 0.000000000000000000000001,
                             min: -180,
                             max: 180,
                         }}

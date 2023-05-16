@@ -41,6 +41,8 @@ function App() {
                                              updateSpot={updateSpot}
                                              spot={spot}
                                              setSpot={setSpot}
+                                             spots={spots}
+                                             setSpots={setSpots}
                                    ></EditSpot>}/>
                     </Routes>
                    <Navigation/>

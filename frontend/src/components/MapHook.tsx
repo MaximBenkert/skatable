@@ -10,8 +10,19 @@ type Props = {
 
 export default function MapHook(props: Props) {
     const [position, setPosition] = useState(new LatLng(props.spot.coordinates.latitude, props.spot.coordinates.longitude))
+
     useMapEvent("click", (event) => {
         setPosition(event.latlng)
+
+        const spotWithNewCoordinates = {
+            id: props.spot.id,
+            coordinates: {
+                latitude: event.latlng.lat,
+                longitude: event.latlng.lng
+            },
+            name: props.spot.name
+        };
+        props.setSpot(spotWithNewCoordinates);
     })
 
     return (

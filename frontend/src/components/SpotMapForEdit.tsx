@@ -1,23 +1,34 @@
 import {MapContainer, Marker, Popup, TileLayer, useMap, useMapEvent} from "react-leaflet";
 import {DomUtil, LatLng, LatLngTuple} from "leaflet";
-import {Dispatch, SetStateAction, useState} from "react";
+import {Dispatch, SetStateAction, useEffect, useState} from "react";
 import {Spot} from "../models/Spot";
 import MapHook from "./MapHook";
+import {useParams} from "react-router-dom";
 
 type SpotMapProps = {
-    spots: Spot [],
-    setSpots: Dispatch<SetStateAction<Spot[]>>,
+
+    loadSpotById: (id: string) => void,
     spot: Spot,
     setSpot: Dispatch<SetStateAction<Spot>>
+    spots: Spot [],
+    setSpots: Dispatch<SetStateAction<Spot[]>>
+
 }
 
 export default function SpotMap(props: SpotMapProps) {
-
-    const centerCoordinates: LatLngTuple = [50.9412, 6.9582]
-
+    const {id} = useParams();
     //const [position, setPosition] = useState<LatLngTuple>([50.9412, 6.9582])
 
+    useEffect(() => {
+        if (id) {
+            props.loadSpotById(id);
+        }
+        //eslint-disable-next-line
+    }, [id])
 
+
+
+    const centerCoordinates: LatLngTuple = [50.9412, 6.9582]
     return (
         <div>
         <MapContainer center={centerCoordinates}
@@ -38,6 +49,7 @@ export default function SpotMap(props: SpotMapProps) {
                     )
                 })
             }
+            <MapHook spot={props.spot} setSpot={props.setSpot}/>
 
         </MapContainer>
         <p>test</p>
