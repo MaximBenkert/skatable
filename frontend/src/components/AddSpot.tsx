@@ -37,11 +37,6 @@ export default function AddSpot(props: AddSpotProps) {
                            onChange={(event) =>
                                setSpot({...spot, name: event.target.value})
                            }/>
-
-
-
-
-
                 <Button
                     className='myButton'
                     variant='contained'

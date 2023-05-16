@@ -17,7 +17,6 @@ type SpotMapProps = {
 
 export default function SpotMap(props: SpotMapProps) {
     const {id} = useParams();
-    //const [position, setPosition] = useState<LatLngTuple>([50.9412, 6.9582])
 
     useEffect(() => {
         if (id) {

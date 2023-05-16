@@ -20,7 +20,7 @@ export default function SpotMap(props: SpotMapProps) {
     return (
         <div>
         <MapContainer center={centerCoordinates}
-                      zoom={17}
+                      zoom={15}
                       scrollWheelZoom={true}
                       style={{width: "100vw", height: "60vh"}}>
             <TileLayer
