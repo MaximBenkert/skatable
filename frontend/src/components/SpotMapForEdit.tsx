@@ -26,13 +26,11 @@ export default function SpotMap(props: SpotMapProps) {
         //eslint-disable-next-line
     }, [id])
 
-
-
-    const centerCoordinates: LatLngTuple = [50.9412, 6.9582]
+    const centerCoordinates: LatLngTuple = [props.spot.coordinates.latitude, props.spot.coordinates.longitude]
     return (
         <div>
         <MapContainer center={centerCoordinates}
-                      zoom={13}
+                      zoom={17}
                       scrollWheelZoom={true}
                       style={{width: "100vw", height: "60vh"}}>
             <TileLayer
