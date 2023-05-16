@@ -18,9 +18,15 @@ function App() {
             <BrowserRouter>
                 <div className="App">
                     <Routes>
+
                         <Route path="/"
-                               element={<SpotGallery spots={spots}
-                                                     deleteSpot={deleteSpot}/>}/>
+                               element={<div><SpotMap spots={spots}
+                                                      setSpots={setSpots}
+                                                      spot={spot}
+                                                      setSpot={setSpot} />
+                                   <SpotGallery spots={spots}
+                                                deleteSpot={deleteSpot} /></div>} />
+
 
 
                         <Route path="/map"
@@ -29,7 +35,7 @@ function App() {
 
 
                         <Route path="/add"
-                               element={<AddSpot addSpot={addSpot}/>}/>
+                               element={<AddSpot addSpot={addSpot} spots={spots}/>}/>
                         <Route path="/details/:id"
                                element={
                             <SpotDetails spot={spot}

@@ -30,7 +30,7 @@ export default function EditDelivery(props: EditProps) {
         if (id) {
             props.updateSpot(props.spot)
         }
-        navigate("/map")
+        navigate("/")
     }
     return (
         <div>

@@ -1,46 +1,52 @@
-import {NewSpot} from "../models/Spot";
+import {Spot} from "../models/Spot";
 import {FormEvent, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {Coordinates} from "../models/Coordinates";
 import {Button, FormControl, FormHelperText, Input, InputLabel, TextField} from "@mui/material";
+import SpotMapForAdd from "./SpotMapForAdd";
 import './Form.css'
 
 type AddSpotProps = {
-    addSpot: (newSpot: NewSpot) => void
+    spots: Spot []
+    addSpot: (newSpot: Spot) => void
+
 }
 
 export default function AddSpot(props: AddSpotProps) {
-    const [name, setName] = useState<string>("")
-    const [latitude, setLatitude] = useState<number>(50.9412)
-    const [longitude, setLongitude] = useState<number>(6.9582)
 
     const navigate = useNavigate()
+
+    const [spot, setSpot] = useState<Spot>({id: "", coordinates: {latitude: 0, longitude: 0}, name: ""})
+
+   // const [name, setName] = useState<string>("")
+   // const [latitude, setLatitude] = useState<number>(50.9412)
+   // const [longitude, setLongitude] = useState<number>(6.9582)
+   // const coordinates: Coordinates = {latitude, longitude}
+  //  const newSpot: NewSpot = {coordinates, name}
 
 
     function onSaveSpot(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
 
-        if (name === undefined || name === "") {
+        if (spot.name === undefined || spot.name === "") {
             console.error("name required")
             return
         }
-        const coordinates: Coordinates = {latitude, longitude}
-        const newSpot: NewSpot = {coordinates, name}
-        props.addSpot(newSpot)
-        navigate("/map")
 
-
+        props.addSpot(spot)
+        navigate("/")
     }
 
     return (
         <div>
+            <SpotMapForAdd spot={spot} setSpot={setSpot} spots={props.spots}/>
+
             <form className="form" onSubmit={onSaveSpot}>
                 <TextField label='name'
                            required
-                           value={name}
-                           onChange={(event) => {
-                               setName(event.target.value)
-                           }}/>
+                           value={spot.name}
+                           onChange={(event) =>
+                               setSpot({...spot, name: event.target.value})
+                           }/>
 
 
                 <FormControl>
@@ -49,16 +55,16 @@ export default function AddSpot(props: AddSpotProps) {
                         id="latitude"
                         type="number"
                         inputProps={{
-                            step: 0.0001,
+                            step: 0.0000000000000000001,
                             min: -90,
                             max: 90,
                         }}
                         required
-                        value={latitude}
-                        error={latitude < -90 || latitude > 90}
-                        onChange={(event) => setLatitude(parseFloat(event.target.value))}
+                        value={spot.coordinates.latitude}
+                        error={spot.coordinates.latitude < -90 || spot.coordinates.latitude > 90}
+                        onChange={(event) => setSpot({...spot, coordinates: { ...spot.coordinates, latitude: parseFloat(event.target.value)}})}
                     />
-                    {latitude < -90 || latitude > 90 ? <FormHelperText>Invalid latitude value</FormHelperText> : null}
+                    {spot.coordinates.latitude < -90 || spot.coordinates.latitude > 90 ? <FormHelperText>Invalid latitude value</FormHelperText> : null}
                 </FormControl>
 
                 <FormControl>
@@ -67,16 +73,16 @@ export default function AddSpot(props: AddSpotProps) {
                         id="longitude"
                         type="number"
                         inputProps={{
-                            step: 0.0001,
+                            step: 0.00000000000000001,
                             min: -180,
                             max: 180,
                         }}
                         required
-                        value={longitude}
-                        error={longitude < -180 || longitude > 180}
-                        onChange={(event) => setLongitude(parseFloat(event.target.value))}
+                        value={spot.coordinates.longitude}
+                        error={spot.coordinates.longitude < -90 || spot.coordinates.longitude > 90}
+                        onChange={(event) => setSpot({...spot, coordinates: { ...spot.coordinates, longitude: parseFloat(event.target.value)}})}
                     />
-                    {longitude < -180 || longitude > 180 ? <FormHelperText>Invalid longitude value</FormHelperText> : null}
+                    {spot.coordinates.longitude < -180 || spot.coordinates.longitude > 180 ? <FormHelperText>Invalid longitude value</FormHelperText> : null}
                 </FormControl>
 
 

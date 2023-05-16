@@ -1,26 +1,26 @@
-import {MapContainer, Marker, Popup, TileLayer} from "react-leaflet";
+import {MapContainer, Marker, TileLayer} from "react-leaflet";
 import {LatLngTuple} from "leaflet";
 import {Dispatch, SetStateAction} from "react";
 import {Spot} from "../models/Spot";
+import MapHook from "./MapHook";
+
 
 type SpotMapProps = {
-    spots: Spot [],
-    setSpots: Dispatch<SetStateAction<Spot[]>>,
+
     spot: Spot,
+    spots: Spot [],
     setSpot: Dispatch<SetStateAction<Spot>>
 }
 
 export default function SpotMap(props: SpotMapProps) {
-
-    const centerCoordinates: LatLngTuple = [50.9412, 6.9582]
-
     //const [position, setPosition] = useState<LatLngTuple>([50.9412, 6.9582])
 
+    const centerCoordinates: LatLngTuple = [50.9412, 6.9582]
 
     return (
         <div>
         <MapContainer center={centerCoordinates}
-                      zoom={13}
+                      zoom={17}
                       scrollWheelZoom={true}
                       style={{width: "100vw", height: "60vh"}}>
             <TileLayer
@@ -33,16 +33,14 @@ export default function SpotMap(props: SpotMapProps) {
                 props.spots.map((spot) => {
                     const position: LatLngTuple = [spot.coordinates.latitude, spot.coordinates.longitude]
                     return(
-                        <Marker key={spot.id} position={position}>
-                            <Popup>
-                                <p>Name: {spot.name}</p>
-                            </Popup>
-                        </Marker>
+                        <Marker key={spot.id} position={position}/>
                     )
                 })
             }
+            <MapHook spot={props.spot} setSpot={props.setSpot}/>
 
         </MapContainer>
+        <p>test</p>
         </div>
     )
 }
