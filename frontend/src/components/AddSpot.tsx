@@ -1,7 +1,7 @@
 import {Spot} from "../models/Spot";
 import {FormEvent, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {Button, FormControl, FormHelperText, Input, InputLabel, TextField} from "@mui/material";
+import {Button, TextField} from "@mui/material";
 import SpotMapForAdd from "./SpotMapForAdd";
 import './Form.css'
 
@@ -49,41 +49,7 @@ export default function AddSpot(props: AddSpotProps) {
                            }/>
 
 
-                <FormControl>
-                    <InputLabel htmlFor="latitude">Latitude</InputLabel>
-                    <Input
-                        id="latitude"
-                        type="number"
-                        inputProps={{
-                            step: 0.0000000000000000001,
-                            min: -90,
-                            max: 90,
-                        }}
-                        required
-                        value={spot.coordinates.latitude}
-                        error={spot.coordinates.latitude < -90 || spot.coordinates.latitude > 90}
-                        onChange={(event) => setSpot({...spot, coordinates: { ...spot.coordinates, latitude: parseFloat(event.target.value)}})}
-                    />
-                    {spot.coordinates.latitude < -90 || spot.coordinates.latitude > 90 ? <FormHelperText>Invalid latitude value</FormHelperText> : null}
-                </FormControl>
 
-                <FormControl>
-                    <InputLabel htmlFor="longitude">Longitude</InputLabel>
-                    <Input
-                        id="longitude"
-                        type="number"
-                        inputProps={{
-                            step: 0.00000000000000001,
-                            min: -180,
-                            max: 180,
-                        }}
-                        required
-                        value={spot.coordinates.longitude}
-                        error={spot.coordinates.longitude < -90 || spot.coordinates.longitude > 90}
-                        onChange={(event) => setSpot({...spot, coordinates: { ...spot.coordinates, longitude: parseFloat(event.target.value)}})}
-                    />
-                    {spot.coordinates.longitude < -180 || spot.coordinates.longitude > 180 ? <FormHelperText>Invalid longitude value</FormHelperText> : null}
-                </FormControl>
 
 
                 <Button
@@ -98,3 +64,40 @@ export default function AddSpot(props: AddSpotProps) {
     )
 
 }
+
+/*
+<FormControl>
+    <InputLabel htmlFor="latitude">Latitude</InputLabel>
+    <Input
+        id="latitude"
+        type="number"
+        inputProps={{
+            step: 0.0000000000000000001,
+            min: -90,
+            max: 90,
+        }}
+        required
+        value={spot.coordinates.latitude}
+        error={spot.coordinates.latitude < -90 || spot.coordinates.latitude > 90}
+        onChange={(event) => setSpot({...spot, coordinates: { ...spot.coordinates, latitude: parseFloat(event.target.value)}})}
+    />
+    {spot.coordinates.latitude < -90 || spot.coordinates.latitude > 90 ? <FormHelperText>Invalid latitude value</FormHelperText> : null}
+</FormControl>
+
+<FormControl>
+    <InputLabel htmlFor="longitude">Longitude</InputLabel>
+    <Input
+        id="longitude"
+        type="number"
+        inputProps={{
+            step: 0.00000000000000001,
+            min: -180,
+            max: 180,
+        }}
+        required
+        value={spot.coordinates.longitude}
+        error={spot.coordinates.longitude < -90 || spot.coordinates.longitude > 90}
+        onChange={(event) => setSpot({...spot, coordinates: { ...spot.coordinates, longitude: parseFloat(event.target.value)}})}
+    />
+    {spot.coordinates.longitude < -180 || spot.coordinates.longitude > 180 ? <FormHelperText>Invalid longitude value</FormHelperText> : null}
+</FormControl>*/
