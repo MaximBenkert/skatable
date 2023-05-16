@@ -1,6 +1,6 @@
 import {Dispatch, SetStateAction, useState} from "react";
-import {LatLng, LatLngTuple} from "leaflet";
-import {Marker, Popup, useMap, useMapEvent} from "react-leaflet";
+import {LatLng} from "leaflet";
+import {Marker, Popup, useMapEvent} from "react-leaflet";
 import {Spot} from "../models/Spot";
 
 type Props = {

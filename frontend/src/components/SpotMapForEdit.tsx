@@ -1,6 +1,6 @@
-import {MapContainer, Marker, Popup, TileLayer, useMap, useMapEvent} from "react-leaflet";
-import {DomUtil, LatLng, LatLngTuple} from "leaflet";
-import {Dispatch, SetStateAction, useEffect, useState} from "react";
+import {MapContainer, Marker, TileLayer} from "react-leaflet";
+import {LatLngTuple} from "leaflet";
+import {Dispatch, SetStateAction, useEffect} from "react";
 import {Spot} from "../models/Spot";
 import MapHook from "./MapHook";
 import {useParams} from "react-router-dom";
