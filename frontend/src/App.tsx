@@ -20,12 +20,13 @@ function App() {
                     <Routes>
 
                         <Route path="/"
-                               element={<div><SpotMapComponent isSpotToEdit={false} spots={spots}
-                                                       />
+                               element={<SpotMapComponent isSpotToEdit={false} spots={spots}
+                               />} />
+
+                        <Route path="/gallery"
+                               element={
                                    <SpotGallery spots={spots}
-                                                deleteSpot={deleteSpot} /></div>} />
-
-
+                                                deleteSpot={deleteSpot} />} />
 
                         <Route path="/add"
                                element={<AddSpot addSpot={addSpot} spots={spots}/>}/>

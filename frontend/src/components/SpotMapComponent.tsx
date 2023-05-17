@@ -24,7 +24,7 @@ export default function CommonMapComponent(props: CommonMapProps) {
             center={centerCoordinates}
             zoom={props.isSpotToEdit ? 17 : 15}
             scrollWheelZoom={true}
-            style={{ width: "100vw", height: "60vh" }}
+            style={{ width: "100vw", height: "80vh" }}
         >
 
             <TileLayer
