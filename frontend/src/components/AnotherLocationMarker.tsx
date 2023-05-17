@@ -18,7 +18,8 @@ export default function AnotherLocationMarker() {
         return () => {
             map.off('locationfound', handleLocationFound)
         }
-    }, )
+        //eslint-disable-next-line
+    }, [])
 
 
 
