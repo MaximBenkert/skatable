@@ -14,7 +14,7 @@ type AddSpotProps = {
 export default function AddSpot(props: AddSpotProps) {
 
     const navigate = useNavigate()
-    const [spot, setSpot] = useState<Spot>({id: "", coordinates: {latitude: 50, longitude: 5}, name: ""})
+    const [spot, setSpot] = useState<Spot>({id: "", coordinates: {latitude: 50.9412, longitude: 6.9582}, name: ""})
 
     function onSaveSpot(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
