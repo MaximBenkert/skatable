@@ -3,7 +3,7 @@ import {Dispatch, FormEvent, SetStateAction, useEffect} from "react";
 import {Button, TextField} from "@mui/material";
 import {Spot} from "../models/Spot";
 import './Form.css'
-import SpotMap from "./SpotMap";
+import SpotMapComponent from "./SpotMapComponent";
 
 type EditProps = {
     loadSpotById: (id: string) => void,
@@ -33,7 +33,7 @@ export default function EditDelivery(props: EditProps) {
     }
     return (
         <div>
-            <SpotMap spot={props.spot} setSpot={props.setSpot} spots={props.spots}  loadSpotById={props.loadSpotById}/>
+            <SpotMapComponent spot={props.spot} setSpot={props.setSpot} spots={props.spots} isSpotToEdit={true}/>
 
             <form className="form" onSubmit={onUpdateSpot}>
                 <TextField label='name'

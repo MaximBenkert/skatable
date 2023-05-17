@@ -3,7 +3,7 @@ import {FormEvent, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {Button, TextField} from "@mui/material";
 import './Form.css'
-import SpotMap from "./SpotMap";
+import SpotMapComponent from "./SpotMapComponent";
 
 type AddSpotProps = {
     spots: Spot []
@@ -28,7 +28,7 @@ export default function AddSpot(props: AddSpotProps) {
 
     return (
         <div>
-            <SpotMap spot={spot} setSpot={setSpot} spots={props.spots}/>
+            <SpotMapComponent spot={spot} setSpot={setSpot} spots={props.spots} isSpotToEdit={false}/>
 
             <form className="form" onSubmit={onSaveSpot}>
                 <TextField label='name'

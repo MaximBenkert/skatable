@@ -21,7 +21,6 @@ export default function SpotMap(props: SpotMapProps) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id]);
 
-    const isEditable = !!props.setSpot;
 
     return (
         <div>
@@ -29,7 +28,7 @@ export default function SpotMap(props: SpotMapProps) {
                 spot={props.spot}
                 spots={props.spots}
                 setSpot={props.setSpot}
-                isEditable={isEditable}
+                isSpotToEdit={false}
             />
         </div>
     );
