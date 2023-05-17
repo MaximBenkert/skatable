@@ -12,7 +12,7 @@ type CommonMapProps = {
     isSpotToEdit: boolean;
 };
 
-export default function CommonMapComponent(props: CommonMapProps) {
+export default function SpotMapComponent(props: CommonMapProps) {
 
 
     const centerCoordinates: LatLngTuple = props.isSpotToEdit && props.spot
