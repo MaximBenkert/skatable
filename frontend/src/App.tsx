@@ -11,7 +11,7 @@ import SpotMap from "./components/SpotMap";
 
 function App() {
 
-    const {spot, setSpot, spots, setSpots, addSpot, loadSpotByID, deleteSpot, updateSpot} = useSpots()
+    const {spot, setSpot, spots, addSpot, loadSpotByID, deleteSpot, updateSpot} = useSpots()
 
     return (
         <main>
@@ -41,7 +41,6 @@ function App() {
                                              spot={spot}
                                              setSpot={setSpot}
                                              spots={spots}
-                                             setSpots={setSpots}
                                    ></EditSpot>}/>
                     </Routes>
                    <Navigation/>

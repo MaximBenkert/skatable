@@ -1,4 +1,4 @@
-import { MapContainer, Marker, TileLayer } from "react-leaflet";
+import {MapContainer, Marker, Popup, TileLayer} from "react-leaflet";
 import { LatLngTuple } from "leaflet";
 import { Dispatch, SetStateAction} from "react";
 import { Spot } from "../models/Spot";
@@ -35,7 +35,11 @@ export default function CommonMapComponent(props: CommonMapProps) {
                     spot.coordinates.latitude,
                     spot.coordinates.longitude,
                 ];
-                return <Marker key={spot.id} position={position} />;
+                return <Marker key={spot.id} position={position}>
+                    <Popup>
+                        {spot.name}
+                    </Popup>
+                </Marker>
             })}
 
             {props.spot && props.setSpot && <MapHook spot={props.spot} setSpot={props.setSpot} />}

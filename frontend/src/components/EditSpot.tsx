@@ -10,8 +10,7 @@ type EditProps = {
     updateSpot: (spot: Spot) => void
     spot: Spot,
     setSpot: Dispatch<SetStateAction<Spot>>
-    spots: Spot [],
-    setSpots: Dispatch<SetStateAction<Spot []>>
+    spots: Spot []
 }
 
 export default function EditDelivery(props: EditProps) {
