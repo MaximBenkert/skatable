@@ -1,51 +1,41 @@
-import {MapContainer, Marker, Popup, TileLayer} from "react-leaflet";
-import {LatLngTuple} from "leaflet";
-import {Dispatch, SetStateAction} from "react";
-import {Spot} from "../models/Spot";
+
+import { Dispatch, SetStateAction, useEffect } from "react";
+import { Spot } from "../models/Spot";
+import { useParams } from "react-router-dom";
+import SpotMapComponent from "./SpotMapComponent";
 
 type SpotMapProps = {
-    spots: Spot [],
-    setSpots: Dispatch<SetStateAction<Spot[]>>,
-    spot: Spot,
-    setSpot: Dispatch<SetStateAction<Spot>>
-}
+    loadSpotById?: (id: string) => void;
+    spot?: Spot;
+    setSpot?: Dispatch<SetStateAction<Spot>>;
+    spots: Spot[];
+};
 
 export default function SpotMap(props: SpotMapProps) {
+    const { id } = useParams();
 
-    const centerCoordinates: LatLngTuple = [50.9412, 6.9582]
+    useEffect(() => {
+        if (props.loadSpotById && id) {
+            props.loadSpotById(id);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [id]);
 
-    //const [position, setPosition] = useState<LatLngTuple>([50.9412, 6.9582])
-
+    const isEditable = !!props.setSpot;
 
     return (
         <div>
-        <MapContainer center={centerCoordinates}
-                      zoom={13}
-                      scrollWheelZoom={true}
-                      style={{width: "100vw", height: "60vh"}}>
-            <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            <SpotMapComponent
+                spot={props.spot}
+                spots={props.spots}
+                setSpot={props.setSpot}
+                isEditable={isEditable}
             />
-
-
-            {
-                props.spots.map((spot) => {
-                    const position: LatLngTuple = [spot.coordinates.latitude, spot.coordinates.longitude]
-                    return(
-                        <Marker key={spot.id} position={position}>
-                            <Popup>
-                                <p>Name: {spot.name}</p>
-                            </Popup>
-                        </Marker>
-                    )
-                })
-            }
-
-        </MapContainer>
         </div>
-    )
+    );
 }
+
+
 
 /*
 <Marker

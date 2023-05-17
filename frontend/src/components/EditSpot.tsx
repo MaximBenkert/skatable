@@ -3,7 +3,7 @@ import {Dispatch, FormEvent, SetStateAction, useEffect} from "react";
 import {Button, TextField} from "@mui/material";
 import {Spot} from "../models/Spot";
 import './Form.css'
-import SpotMapForEdit from "./SpotMapForEdit";
+import SpotMap from "./SpotMap";
 
 type EditProps = {
     loadSpotById: (id: string) => void,
@@ -34,17 +34,13 @@ export default function EditDelivery(props: EditProps) {
     }
     return (
         <div>
-            <SpotMapForEdit spot={props.spot} setSpot={props.setSpot} spots={props.spots} setSpots={props.setSpots} loadSpotById={props.loadSpotById}/>
+            <SpotMap spot={props.spot} setSpot={props.setSpot} spots={props.spots}  loadSpotById={props.loadSpotById}/>
 
             <form className="form" onSubmit={onUpdateSpot}>
                 <TextField label='name'
                            value={props.spot.name}
                            onChange={(event) => props.setSpot({...props.spot, name: event.target.value})}
                 />
-
-
-
-
                 <Button
                     className='myButton'
                     variant='contained'

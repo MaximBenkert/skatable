@@ -21,17 +21,10 @@ function App() {
 
                         <Route path="/"
                                element={<div><SpotMap spots={spots}
-                                                      setSpots={setSpots}
-                                                      spot={spot}
-                                                      setSpot={setSpot} />
+                                                       />
                                    <SpotGallery spots={spots}
                                                 deleteSpot={deleteSpot} /></div>} />
 
-
-
-                        <Route path="/map"
-                               element={<SpotMap spots={spots} setSpots={setSpots} spot={spot} setSpot={setSpot}/>}
-                        />
 
 
                         <Route path="/add"
