@@ -2,7 +2,7 @@ import L, {LatLng} from "leaflet";
 import "leaflet-routing-machine";
 import {createControlComponent} from "@react-leaflet/core";
 
-export default function Routing() {
+export default function RouteToSpot() {
 
     const waypoints: L.LatLng[] = [new LatLng(51.015, 7.54), new LatLng(50.9891, 7.5165)];
 
