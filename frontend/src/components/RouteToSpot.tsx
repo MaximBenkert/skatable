@@ -1,33 +1,30 @@
-
-import { useEffect } from "react";
-import L from "leaflet";
+import L, {LatLng} from "leaflet";
 import "leaflet-routing-machine";
-import { useMap } from "react-leaflet";
+import {createControlComponent} from "@react-leaflet/core";
 
-export default function RouteToSpot() {
-    const waypoints = [
-        L.latLng(50.9891, 7.54),
-        L.latLng(51.0135, 7.54)
-    ];
+export default function Routing() {
 
-    const map: L.Map = useMap();
-    const addRoutingControl = (map: L.Map) => {
-        L.Routing.control({
-            waypoints: waypoints,
-            lineOptions: {
-                styles: [{ color: "000000", weight: 4 }],
-                extendToWaypoints: false,
-                missingRouteTolerance: 0
-            }
-        }).addTo(map);
-    };
+    const waypoints: L.LatLng[] = [new LatLng(51.015, 7.54), new LatLng(50.9891, 7.5165)];
 
+    const RoutingMachine = createControlComponent(() => new L.Routing.Control({
+        waypoints: waypoints,
+        lineOptions: {
+            styles: [{color: "#DB745A", weight: 4}],
+            extendToWaypoints: false,
+            missingRouteTolerance: 0
+        },
+        altLineOptions: {
+            styles: [{color: "#F2E36F", weight: 4}],
+            extendToWaypoints: false,
+            missingRouteTolerance: 0
+        },
+        showAlternatives: true,
+        collapsible: true, //allows route description to be collapsed
+    }))
 
-
-    useEffect(() => {
-        addRoutingControl(map);
-    }, [map]);
-
-    return null; // Die Komponente muss kein JSX-Element zurückgeben
+    return (
+        <>
+            <RoutingMachine/>
+        </>
+    )
 }
-

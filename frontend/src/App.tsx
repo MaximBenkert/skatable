@@ -8,7 +8,6 @@ import Navigation from "./components/Navigation";
 import SpotDetails from "./components/SpotDetails";
 import EditSpot from "./components/EditSpot";
 import SpotMapComponent from "./components/SpotMapComponent";
-import TestMap from "./components/TestMap";
 
 function App() {
 
@@ -28,8 +27,6 @@ function App() {
                                element={
                                    <SpotGallery spots={spots}
                                                 deleteSpot={deleteSpot} />} />
-                        <Route path="/testmap1"
-                               element={<TestMap/>}/>
 
                         <Route path="/add"
                                element={<AddSpot addSpot={addSpot} spots={spots}/>}/>
