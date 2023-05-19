@@ -3,7 +3,7 @@ import {LatLng, LatLngTuple} from "leaflet";
 import {Dispatch, SetStateAction, useState} from "react";
 import { Spot } from "../models/Spot";
 import MapHook from "./MapHook";
-import AnotherLocationMarker from "./AnotherLocationMarker";
+import LocationMarker from "./LocationMarker";
 import {useNavigate} from "react-router-dom";
 
 type CommonMapProps = {
@@ -53,7 +53,7 @@ export default function SpotMapComponent(props: CommonMapProps) {
                 </Marker>
             })}
 
-            {!props.isSpotToEdit && <AnotherLocationMarker position={position} setPosition={setPosition}/>}
+            {!props.isSpotToEdit && <LocationMarker position={position} setPosition={setPosition}/>}
 
             {props.spot && props.setSpot && <MapHook spot={props.spot} setSpot={props.setSpot} />}
 

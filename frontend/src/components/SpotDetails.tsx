@@ -3,7 +3,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import React, {useEffect} from "react";
 import {Box, Button, ButtonGroup, Card, Container, Typography} from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
-import TestMap from "./TestMap";
+import MapForDetails from "./MapForDetails";
 
 type DetailProps = {
     loadSpotById: (id: string) => void;
@@ -45,7 +45,7 @@ export default function SpotDetails(props: DetailProps) {
                     </Card>
                     :
                     <p>... loading</p>}
-                <TestMap spot={props.spot}/>
+                <MapForDetails spot={props.spot}/>
             </Box>
         </Container>
 

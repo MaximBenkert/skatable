@@ -6,7 +6,7 @@ type Props = {
     position: LatLng
     setPosition: Dispatch<SetStateAction<LatLng>>
 }
-export default function AnotherLocationMarker(props: Props) {
+export default function LocationMarker(props: Props) {
 
 
 
