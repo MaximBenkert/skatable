@@ -1,5 +1,4 @@
 import {MapContainer, TileLayer} from "react-leaflet";
-import RouteToSpot from "./RouteToSpot"
 
 
 
@@ -20,7 +19,7 @@ export default function TestMap() {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
 
-            <RouteToSpot/>
+
 
 
 
