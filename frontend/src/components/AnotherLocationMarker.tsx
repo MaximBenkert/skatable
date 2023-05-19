@@ -1,14 +1,20 @@
-import React, {useEffect, useState} from "react";
+import React, {Dispatch, SetStateAction, useEffect} from "react";
 import {Marker, Popup, useMapEvents} from "react-leaflet";
 import {LatLng, LocationEvent} from "leaflet";
 
-export default function AnotherLocationMarker() {
-    const [position, setPosition] = useState<LatLng | null>(null)
+type Props = {
+    position: LatLng
+    setPosition: Dispatch<SetStateAction<LatLng>>
+}
+export default function AnotherLocationMarker(props: Props) {
+
+
+
     const map = useMapEvents({})
 
 
     const handleLocationFound = (event: LocationEvent) => {
-        setPosition(event.latlng)
+        props.setPosition(event.latlng)
         map.flyTo(event.latlng, map.getZoom())
     }
     useEffect(() => {
@@ -23,8 +29,8 @@ export default function AnotherLocationMarker() {
 
 
 
-    return position === null ? null : (
-        <Marker position={position}>
+    return props.position === null ? null : (
+        <Marker position={props.position}>
             <Popup>You are here</Popup>
         </Marker>
     )

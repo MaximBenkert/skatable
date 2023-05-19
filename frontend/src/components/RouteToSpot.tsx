@@ -1,10 +1,17 @@
 import L, {LatLng} from "leaflet";
 import "leaflet-routing-machine";
 import {createControlComponent} from "@react-leaflet/core";
+import {Spot} from "../models/Spot";
 
-export default function RouteToSpot() {
+type Props = {
+    spot: Spot,
+    currentPosition: LatLng
 
-    const waypoints: L.LatLng[] = [new LatLng(51.015, 7.54), new LatLng(50.9891, 7.5165)];
+}
+
+export default function RouteToSpot(props: Props) {
+
+    const waypoints: L.LatLng[] = [(props.currentPosition), new LatLng(props.spot.coordinates.latitude,props.spot.coordinates.longitude)];
 
     const RoutingMachine = createControlComponent(() => new L.Routing.Control({
         waypoints: waypoints,
