@@ -1,84 +1,42 @@
-import {NewSpot} from "../models/Spot";
+import {Spot} from "../models/Spot";
 import {FormEvent, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {Coordinates} from "../models/Coordinates";
-import {Button, FormControl, FormHelperText, Input, InputLabel, TextField} from "@mui/material";
+import {Button, TextField} from "@mui/material";
+import './Form.css'
+import SpotMapComponent from "./SpotMapComponent";
 
 type AddSpotProps = {
-    addSpot: (newSpot: NewSpot) => void
+    spots: Spot []
+    addSpot: (newSpot: Spot) => void
+
 }
 
 export default function AddSpot(props: AddSpotProps) {
-    const [name, setName] = useState<string>("")
-    const [latitude, setLatitude] = useState<number>(50.9412)
-    const [longitude, setLongitude] = useState<number>(6.9582)
 
     const navigate = useNavigate()
-
+    const [spot, setSpot] = useState<Spot>({id: "", coordinates: {latitude: 50.9412, longitude: 6.9582}, name: ""})
 
     function onSaveSpot(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
-
-        if (name === undefined || name === "") {
+        if (spot.name === undefined || spot.name === "") {
             console.error("name required")
             return
         }
-        const coordinates: Coordinates = {latitude, longitude}
-        const newSpot: NewSpot = {coordinates, name}
-        props.addSpot(newSpot)
+        props.addSpot(spot)
         navigate("/")
-
-
     }
 
     return (
         <div>
-            <form onSubmit={onSaveSpot}>
+            <SpotMapComponent spot={spot} setSpot={setSpot} spots={props.spots} isSpotToEdit={false}/>
+
+            <form className="form" onSubmit={onSaveSpot}>
                 <TextField label='name'
                            required
-                           value={name}
-                           onChange={(event) => {
-                               setName(event.target.value)
-                           }}/>
-
-
-                <FormControl>
-                    <InputLabel htmlFor="latitude">Latitude</InputLabel>
-                    <Input
-                        id="latitude"
-                        type="number"
-                        inputProps={{
-                            step: 0.0001,
-                            min: -90,
-                            max: 90,
-                        }}
-                        required
-                        value={latitude}
-                        error={latitude < -90 || latitude > 90}
-                        onChange={(event) => setLatitude(parseFloat(event.target.value))}
-                    />
-                    {latitude < -90 || latitude > 90 ? <FormHelperText>Invalid latitude value</FormHelperText> : null}
-                </FormControl>
-
-                <FormControl>
-                    <InputLabel htmlFor="longitude">Longitude</InputLabel>
-                    <Input
-                        id="longitude"
-                        type="number"
-                        inputProps={{
-                            step: 0.0001,
-                            min: -180,
-                            max: 180,
-                        }}
-                        required
-                        value={longitude}
-                        error={longitude < -180 || longitude > 180}
-                        onChange={(event) => setLongitude(parseFloat(event.target.value))}
-                    />
-                    {longitude < -180 || longitude > 180 ? <FormHelperText>Invalid longitude value</FormHelperText> : null}
-                </FormControl>
-
-
+                           value={spot.name}
+                           onChange={(event) =>
+                               setSpot({...spot, name: event.target.value})
+                           }/>
                 <Button
                     className='myButton'
                     variant='contained'

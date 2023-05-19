@@ -3,11 +3,11 @@ import './App.css';
 import useSpots from "./hooks/useSpots";
 import SpotGallery from "./components/SpotGallery";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import Header from "./components/Header";
 import AddSpot from "./components/AddSpot";
 import Navigation from "./components/Navigation";
 import SpotDetails from "./components/SpotDetails";
 import EditSpot from "./components/EditSpot";
+import SpotMapComponent from "./components/SpotMapComponent";
 
 function App() {
 
@@ -17,13 +17,19 @@ function App() {
         <main>
             <BrowserRouter>
                 <div className="App">
-                    <Header/>
                     <Routes>
+
                         <Route path="/"
-                               element={<SpotGallery spots={spots}
-                                                     deleteSpot={deleteSpot}/>}/>
+                               element={<SpotMapComponent isSpotToEdit={false} spots={spots}
+                               />} />
+
+                        <Route path="/gallery"
+                               element={
+                                   <SpotGallery spots={spots}
+                                                deleteSpot={deleteSpot} />} />
+
                         <Route path="/add"
-                               element={<AddSpot addSpot={addSpot}/>}/>
+                               element={<AddSpot addSpot={addSpot} spots={spots}/>}/>
                         <Route path="/details/:id"
                                element={
                             <SpotDetails spot={spot}
@@ -35,6 +41,7 @@ function App() {
                                              updateSpot={updateSpot}
                                              spot={spot}
                                              setSpot={setSpot}
+                                             spots={spots}
                                    ></EditSpot>}/>
                     </Routes>
                    <Navigation/>

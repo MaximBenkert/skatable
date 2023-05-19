@@ -60,5 +60,5 @@ export default function useSpots() {
             .catch(reason => console.error(reason))
         }
 
-    return {spot, setSpot, spots, addSpot, loadSpotByID, deleteSpot, updateSpot}
+    return {spot, setSpot, spots, setSpots, addSpot, loadSpotByID, deleteSpot, updateSpot}
 }
