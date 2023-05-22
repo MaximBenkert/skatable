@@ -7,6 +7,7 @@ import Navigation from "./components/Navigation";
 import SpotDetails from "./components/SpotDetails";
 import EditSpot from "./components/EditSpot";
 import SpotMapComponent from "./components/SpotMapComponent";
+import SpotGallery from "./components/SpotGallery";
 
 function App() {
 
@@ -21,9 +22,11 @@ function App() {
                         <Route path="/" element={
                                 <SpotMapComponent isSpotToEdit={false} spots={spots} mapHeight={mapHeight} />
                         } />
-
                         <Route path="/add"
                                element={<AddSpot addSpot={addSpot} spots={spots}/>}/>
+                        <Route path="/gallery" element={
+                            <SpotGallery spots={spots} deleteSpot={deleteSpot}/>
+                        } />
                         <Route path="/details/:id"
                                element={
                             <SpotDetails spot={spot}

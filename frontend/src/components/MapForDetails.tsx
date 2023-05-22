@@ -21,7 +21,7 @@ export default function MapForDetails (props: Props) {
             center={centerCoordinates}
             zoom={15}
             scrollWheelZoom={true}
-            style={{width: "85vw", height: "60vh"}}
+            style={{width: "100vw", height: "66vh"}}
         >
 
             <TileLayer
