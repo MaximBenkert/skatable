@@ -11,6 +11,7 @@ type CommonMapProps = {
     spots: Spot[];
     setSpot?: Dispatch<SetStateAction<Spot>>;
     isSpotToEdit: boolean;
+    mapHeight: string
 };
 
 export default function SpotMapComponent(props: CommonMapProps) {
@@ -23,11 +24,12 @@ export default function SpotMapComponent(props: CommonMapProps) {
         : [50.9392, 6.9404];
 
     return (
+        <div>
         <MapContainer
             center={centerCoordinates}
             zoom={props.isSpotToEdit ? 17 : 15}
             scrollWheelZoom={true}
-            style={{width: "100vw", height: "80vh"}}
+            style={{width: "100vw", height: props.mapHeight}}
         >
 
             <TileLayer
@@ -58,5 +60,6 @@ export default function SpotMapComponent(props: CommonMapProps) {
             {props.spot && props.setSpot && <MapHook spot={props.spot} setSpot={props.setSpot} />}
 
         </MapContainer>
+        </div>
     );
 }

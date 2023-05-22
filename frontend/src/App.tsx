@@ -11,15 +11,15 @@ import SpotMapComponent from "./components/SpotMapComponent";
 function App() {
 
     const {spot, setSpot, spots, addSpot, loadSpotByID, deleteSpot, updateSpot} = useSpots()
+    const mapHeight = `calc(100vh - 54px)`;
 
     return (
         <main>
             <BrowserRouter>
                 <div className="App">
                     <Routes>
-
                         <Route path="/" element={
-                                <SpotMapComponent isSpotToEdit={false} spots={spots} />
+                                <SpotMapComponent isSpotToEdit={false} spots={spots} mapHeight={mapHeight} />
                         } />
 
                         <Route path="/add"
@@ -38,7 +38,7 @@ function App() {
                                              spots={spots}
                                    ></EditSpot>}/>
                     </Routes>
-                   <Navigation/>
+                    <Navigation/>
                 </div>
             </BrowserRouter>
         </main>

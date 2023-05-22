@@ -16,6 +16,7 @@ type EditProps = {
 export default function EditDelivery(props: EditProps) {
     const {id} = useParams();
     const navigate = useNavigate();
+    const mapHeight = `calc(100vh - 200px)`;
 
     useEffect(() => {
         if (id) {
@@ -33,7 +34,7 @@ export default function EditDelivery(props: EditProps) {
     }
     return (
         <div>
-            <SpotMapComponent spot={props.spot} setSpot={props.setSpot} spots={props.spots} isSpotToEdit={true}/>
+            <SpotMapComponent spot={props.spot} setSpot={props.setSpot} spots={props.spots} isSpotToEdit={true} mapHeight={mapHeight}/>
 
             <form className="form" onSubmit={onUpdateSpot}>
                 <TextField label='name'
