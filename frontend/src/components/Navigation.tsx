@@ -8,7 +8,7 @@ export default function Navigation() {
 
     return (
         <div>
-            <Paper sx={{position: 'fixed', bottom: '0.1rem'}}>
+            <Paper sx={{position: 'fixed', bottom: '0.0rem'}}>
                 <BottomNavigation sx={{width: '100vw', bgcolor: "#228B22"}}>
                     <NavLink to="/">
                         <BottomNavigationAction

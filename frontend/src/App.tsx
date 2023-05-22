@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import useSpots from "./hooks/useSpots";
-import SpotGallery from "./components/SpotGallery";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import AddSpot from "./components/AddSpot";
 import Navigation from "./components/Navigation";
@@ -20,10 +19,7 @@ function App() {
                     <Routes>
 
                         <Route path="/" element={
-                            <div>
                                 <SpotMapComponent isSpotToEdit={false} spots={spots} />
-                                <SpotGallery spots={spots} deleteSpot={deleteSpot} />
-                            </div>
                         } />
 
                         <Route path="/add"
