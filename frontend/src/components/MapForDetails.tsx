@@ -11,7 +11,7 @@ type Props = {
 
 export default function MapForDetails (props: Props) {
 
-    const [position, setPosition] = useState<LatLng>(new LatLng(51.505, -0.09));
+    const [position, setPosition] = useState<LatLng>(new LatLng(50.9413, 6.9585));
     const centerCoordinates: LatLngTuple = [props.spot.coordinates.latitude, props.spot.coordinates.longitude]
 
 
@@ -21,7 +21,7 @@ export default function MapForDetails (props: Props) {
             center={centerCoordinates}
             zoom={15}
             scrollWheelZoom={true}
-            style={{width: "70vw", height: "80vh"}}
+            style={{width: "85vw", height: "60vh"}}
         >
 
             <TileLayer

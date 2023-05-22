@@ -16,11 +16,11 @@ type CommonMapProps = {
 export default function SpotMapComponent(props: CommonMapProps) {
     const navigate = useNavigate()
 
-    const [position, setPosition] = useState<LatLng>(new LatLng(51.505, -0.09));
+    const [position, setPosition] = useState<LatLng>(new LatLng(50.9413, 6.9585));
 
     const centerCoordinates: LatLngTuple = props.isSpotToEdit && props.spot
         ? [props.spot.coordinates.latitude, props.spot.coordinates.longitude]
-        : [50.9412, 6.9582];
+        : [50.9392, 6.9404];
 
     return (
         <MapContainer

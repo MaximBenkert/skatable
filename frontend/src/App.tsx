@@ -19,14 +19,12 @@ function App() {
                 <div className="App">
                     <Routes>
 
-                        <Route path="/"
-                               element={<SpotMapComponent isSpotToEdit={false} spots={spots}
-                               />} />
-
-                        <Route path="/gallery"
-                               element={
-                                   <SpotGallery spots={spots}
-                                                deleteSpot={deleteSpot} />} />
+                        <Route path="/" element={
+                            <div>
+                                <SpotMapComponent isSpotToEdit={false} spots={spots} />
+                                <SpotGallery spots={spots} deleteSpot={deleteSpot} />
+                            </div>
+                        } />
 
                         <Route path="/add"
                                element={<AddSpot addSpot={addSpot} spots={spots}/>}/>
