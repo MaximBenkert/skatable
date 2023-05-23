@@ -27,7 +27,7 @@ export default function SpotMapComponent(props: CommonMapProps) {
         <div>
         <MapContainer
             center={centerCoordinates}
-            zoom={props.isSpotToEdit ? 17 : 15}
+            zoom={props.isSpotToEdit ? 17 : 13}
             scrollWheelZoom={true}
             style={{width: "100vw", height: props.mapHeight}}
         >

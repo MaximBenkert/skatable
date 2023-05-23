@@ -15,6 +15,7 @@ export default function RouteToSpot(props: Props) {
 
     const RoutingMachine = createControlComponent(() => new L.Routing.Control({
         waypoints: waypoints,
+        fitSelectedRoutes: true,
         lineOptions: {
             styles: [{color: "#DB745A", weight: 4}],
             extendToWaypoints: false,
