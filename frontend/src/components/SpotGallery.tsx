@@ -5,7 +5,6 @@ import './SpotGallery.css'
 
 type Props = {
     spots: Spot[]
-    deleteSpot: (id: string) => void
 }
 
 export default function SpotGallery(props: Props) {
@@ -19,7 +18,7 @@ export default function SpotGallery(props: Props) {
                 <div style={{ paddingBottom: "74px" }}>
                     {props.spots.map((spot) => {
                         return (
-                            <SpotCard key={spot.id} spot={spot} deleteSpot={props.deleteSpot}/>
+                            <SpotCard key={spot.id} spot={spot}/>
                         )
                     })
                     }

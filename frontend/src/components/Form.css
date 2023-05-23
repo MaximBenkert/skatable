@@ -4,3 +4,7 @@
     gap: 0.5rem;
     margin: 1rem;
 }
+
+.myButton {
+    justify-content: flex-end;
+}

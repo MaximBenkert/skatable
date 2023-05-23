@@ -29,21 +29,23 @@ export default function SpotDetails(props: DetailProps) {
 
             {props.spot ?
                 <Card variant="outlined" sx={{p: "0.8rem"}}>
-                    <p>{props.spot.name}</p>
+                    <big>{props.spot.name}</big>
 
-
-                    <ButtonGroup sx={{display: "flex", justifyContent: "space-between"}} variant="text"
-                                 aria-label="text button group">
-                        <Button variant="outlined"
-                                onClick={() => navigate(`/`)}>Back</Button>
-                        <Button className="button" variant="contained" endIcon={<EditIcon/>}
-                                onClick={() => navigate(`/edit/${props.spot.id}`)}>Edit</Button>
-                    </ButtonGroup>
 
                 </Card>
                 :
                 <p>... loading</p>}
+
             <MapForDetails spot={props.spot}/>
+
+            <ButtonGroup sx={{display: "flex", justifyContent: "space-between"}} variant="text"
+                         aria-label="text button group">
+                <Button variant="outlined"
+                        onClick={() => navigate(`/`)}>Back</Button>
+                <Button className="button" variant="contained" endIcon={<EditIcon/>}
+                        onClick={() => navigate(`/edit/${props.spot.id}`)}>Edit</Button>
+            </ButtonGroup>
+
         </div>
 
     )

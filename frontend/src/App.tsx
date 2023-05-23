@@ -25,7 +25,7 @@ function App() {
                         <Route path="/add"
                                element={<AddSpot addSpot={addSpot} spots={spots}/>}/>
                         <Route path="/gallery" element={
-                            <SpotGallery spots={spots} deleteSpot={deleteSpot}/>
+                            <SpotGallery spots={spots}/>
                         } />
                         <Route path="/details/:id"
                                element={
@@ -39,6 +39,7 @@ function App() {
                                              spot={spot}
                                              setSpot={setSpot}
                                              spots={spots}
+                                             deleteSpot={deleteSpot}
                                    ></EditSpot>}/>
                     </Routes>
                     <Navigation/>
