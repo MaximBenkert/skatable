@@ -1,7 +1,8 @@
 import {Dispatch, SetStateAction, useState} from "react";
-import {LatLng} from "leaflet";
+import L, {LatLng} from "leaflet";
 import {Marker, Popup, useMapEvent} from "react-leaflet";
 import {Spot} from "../models/Spot";
+
 
 type Props = {
     spot: Spot
@@ -25,8 +26,16 @@ export default function MapHook(props: Props) {
         props.setSpot(spotWithNewCoordinates);
     })
 
+    const spotIcon = new L.Icon({
+        iconUrl: require("../resources/skateboard-icon.png"),
+        iconSize: [80, 50]
+    })
+
     return (
-        <Marker position={position}>
+        <Marker position={position}
+                icon={spotIcon}
+                draggable={true}
+        >
             <Popup>
                 <p>Lat: {position.lat.toFixed(4)}</p>
                 <p>Lng: {position.lng.toFixed(4)}</p>

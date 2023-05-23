@@ -1,5 +1,5 @@
 import {MapContainer, Marker, Popup, TileLayer} from "react-leaflet";
-import {LatLng, LatLngTuple} from "leaflet";
+import L, {LatLng, LatLngTuple} from "leaflet";
 import {Dispatch, SetStateAction, useState} from "react";
 import { Spot } from "../models/Spot";
 import MapHook from "./MapHook";
@@ -23,6 +23,11 @@ export default function SpotMapComponent(props: CommonMapProps) {
         ? [props.spot.coordinates.latitude, props.spot.coordinates.longitude]
         : [50.9392, 6.9404];
 
+    const spotIcon = new L.Icon({
+        iconUrl: require("../resources/skateboard-icon.png"),
+        iconSize: [80, 50]
+    })
+
     return (
         <div>
         <MapContainer
@@ -44,11 +49,11 @@ export default function SpotMapComponent(props: CommonMapProps) {
                 ];
                 return <Marker key={spot.id}
                                position={position}
+                               icon={spotIcon}
                                eventHandlers={{
                                    click: () => navigate("/details/" + spot.id)
                                }}>
                     <Popup eventHandlers={{
-
                     }}>
                         {spot.name}
                     </Popup>
