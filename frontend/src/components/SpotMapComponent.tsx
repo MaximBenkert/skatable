@@ -25,7 +25,7 @@ export default function SpotMapComponent(props: CommonMapProps) {
 
     const spotIcon = new L.Icon({
         iconUrl: require("../resources/skateboard-icon.png"),
-        iconSize: [80, 50]
+        iconSize: [80, 80]
     })
 
     return (
