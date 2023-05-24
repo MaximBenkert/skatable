@@ -8,16 +8,18 @@ import SpotDetails from "./components/SpotDetails";
 import EditSpot from "./components/EditSpot";
 import SpotMapComponent from "./components/SpotMapComponent";
 import SpotGallery from "./components/SpotGallery";
+import Header from './components/Header';
 
 function App() {
 
     const {spot, setSpot, spots, addSpot, loadSpotByID, deleteSpot, updateSpot} = useSpots()
-    const mapHeight = `calc(100vh - 54px)`;
+    const mapHeight = `calc(100vh - 112px)`;
 
     return (
         <main>
             <BrowserRouter>
                 <div className="App">
+                    <Header></Header>
                     <Routes>
                         <Route path="/" element={
                                 <SpotMapComponent isSpotToEdit={false} spots={spots} mapHeight={mapHeight} />
@@ -25,7 +27,7 @@ function App() {
                         <Route path="/add"
                                element={<AddSpot addSpot={addSpot} spots={spots}/>}/>
                         <Route path="/gallery" element={
-                            <SpotGallery spots={spots} deleteSpot={deleteSpot}/>
+                            <SpotGallery spots={spots}/>
                         } />
                         <Route path="/details/:id"
                                element={
@@ -39,6 +41,7 @@ function App() {
                                              spot={spot}
                                              setSpot={setSpot}
                                              spots={spots}
+                                             deleteSpot={deleteSpot}
                                    ></EditSpot>}/>
                     </Routes>
                     <Navigation/>

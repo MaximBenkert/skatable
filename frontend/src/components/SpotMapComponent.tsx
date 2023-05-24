@@ -21,7 +21,7 @@ export default function SpotMapComponent(props: CommonMapProps) {
 
     const centerCoordinates: LatLngTuple = props.isSpotToEdit && props.spot
         ? [props.spot.coordinates.latitude, props.spot.coordinates.longitude]
-        : [50.9392, 6.9404];
+        : [position.lat, position.lng];
 
     const spotIcon = new L.Icon({
         iconUrl: require("../resources/skateboard-icon.png"),
@@ -32,7 +32,7 @@ export default function SpotMapComponent(props: CommonMapProps) {
         <div>
         <MapContainer
             center={centerCoordinates}
-            zoom={props.isSpotToEdit ? 17 : 13}
+            zoom={props.isSpotToEdit ? 17 : 15}
             scrollWheelZoom={true}
             style={{width: "100vw", height: props.mapHeight}}
         >
