@@ -33,7 +33,7 @@ export default function AddSpot(props: AddSpotProps) {
 
 
             <form className="form" onSubmit={onSaveSpot} style={{ color: "#6699CC"}}>
-                <TextField label='name'
+                <TextField label='name your spot'
                            required
                            value={spot.name}
                            onChange={(event) =>

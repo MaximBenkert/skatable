@@ -10,7 +10,7 @@ export default function Header() {
 
             <AppBar position="static" sx={{ display: 'flex', flexDirection: "column", alignItems: 'center', bgcolor: "#000000" }}>
                 <Toolbar>
-                    <Typography variant="h3" fontWeight="bold" fontFamily="Arial" color="#6699CC">Skatable</Typography>
+                    <Typography variant="h3" fontWeight="bold" fontFamily="Impact" color="#6699CC">Skatable</Typography>
                 </Toolbar>
             </AppBar>
 
