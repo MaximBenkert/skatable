@@ -39,7 +39,7 @@ export default function EditDelivery(props: EditProps) {
         const confirmed = window.confirm("Are you sure you want to delete the spot?");
         if (confirmed) {
             props.deleteSpot(props.spot.id);
-            navigate("/");
+            navigate("/gallery");
         }
     }
 
