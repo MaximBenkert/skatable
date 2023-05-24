@@ -18,7 +18,7 @@ type EditProps = {
 export default function EditDelivery(props: EditProps) {
     const {id} = useParams();
     const navigate = useNavigate();
-    const mapHeight = `calc(100vh - 250px)`;
+    const mapHeight: string = `calc(100vh - 281px)`;
 
     useEffect(() => {
         if (id) {
@@ -31,12 +31,12 @@ export default function EditDelivery(props: EditProps) {
         event.preventDefault()
         if (id) {
             props.updateSpot(props.spot)
-            navigate("/")
+            navigate("/gallery")
         }
     }
 
     function onDeleteClick() {
-        const confirmed = window.confirm("Möchten Sie den Spot wirklich löschen?");
+        const confirmed = window.confirm("Are you sure?");
         if (confirmed) {
             props.deleteSpot(props.spot.id);
             navigate("/");
@@ -45,11 +45,12 @@ export default function EditDelivery(props: EditProps) {
 
 
     return (
-        <div>
+        <div style={{backgroundColor: "#9CBAC6"}}>
             <SpotMapComponent spot={props.spot} setSpot={props.setSpot} spots={props.spots} isSpotToEdit={true}
                               mapHeight={mapHeight}/>
 
             <form className="form"
+
                   onSubmit={onUpdateSpot}>
                 <TextField label='name'
                            value={props.spot.name}
@@ -57,13 +58,13 @@ export default function EditDelivery(props: EditProps) {
                 />
                 <Button
                     variant='contained'
-                    color="success"
+                    color="inherit"
                     type='submit'
                 >update</Button>
 
                 <Button className="myButton"
                         variant="outlined"
-                        color="error"
+                        color="inherit"
                         endIcon={<DeleteIcon/>}
                         onClick={onDeleteClick}></Button>
 

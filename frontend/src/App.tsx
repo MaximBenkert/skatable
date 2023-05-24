@@ -13,7 +13,7 @@ import Header from './components/Header';
 function App() {
 
     const {spot, setSpot, spots, addSpot, loadSpotByID, deleteSpot, updateSpot} = useSpots()
-    const mapHeight = `calc(100vh - 108px)`;
+    const mapHeight = `calc(100vh - 112px)`;
 
     return (
         <main>

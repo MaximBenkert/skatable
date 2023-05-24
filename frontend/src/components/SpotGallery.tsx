@@ -10,12 +10,12 @@ type Props = {
 export default function SpotGallery(props: Props) {
 
     return (
-        <Container className="spotgallery" maxWidth="lg">
+        <Container className="spotgallery" maxWidth="lg" sx={{ backgroundColor: "#9CBAC6" }}>
 
-                <Typography sx={{fontSize: "3rem", padding: "1rem"}} variant="h2" component="h2">
-                    Spots
+                <Typography sx={{fontSize: "3rem", padding: "1rem", display: "flex", alignItems: "center", justifyContent: "center" }} variant="h2" component="h2">
+                    Gallery
                 </Typography>
-                <div style={{ paddingBottom: "74px" }}>
+                <div style={{ paddingBottom: "720px" }}>
                     {props.spots.map((spot) => {
                         return (
                             <SpotCard key={spot.id} spot={spot}/>
