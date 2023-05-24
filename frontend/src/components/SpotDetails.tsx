@@ -1,7 +1,7 @@
 import {Spot} from "../models/Spot";
 import {useNavigate, useParams} from "react-router-dom";
 import React, {useEffect} from "react";
-import {Button, ButtonGroup, Card} from "@mui/material";
+import {Button, ButtonGroup, Card, Typography} from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import MapForDetails from "./MapForDetails";
 
@@ -25,6 +25,10 @@ export default function SpotDetails(props: DetailProps) {
     return (
         <div>
 
+            <Typography sx={{fontSize: "2.7rem", padding: "1rem", display: "flex", alignItems: "center", justifyContent: "center", color: "black", backgroundColor: "#9CBAC6"}} variant="h3" component="h2">
+                Spot Details
+
+            </Typography>
 
             {props.spot ?
                 <Card variant="outlined" sx={{p: "0.8rem", display: "flex", justifyContent: "center", alignItems: "center", backgroundColor: "#9CBAC6"}}>
@@ -33,7 +37,10 @@ export default function SpotDetails(props: DetailProps) {
                 :
                 <p>... loading</p>}
 
+
             <MapForDetails spot={props.spot}/>
+
+
 
             <ButtonGroup sx={{display: "flex", justifyContent: "space-between", padding: "12px", backgroundColor: "#9CBAC6"}} variant="text"
                          aria-label="text button group">
