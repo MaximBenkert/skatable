@@ -15,6 +15,7 @@ export default function AddSpot(props: AddSpotProps) {
 
     const navigate = useNavigate()
     const [spot, setSpot] = useState<Spot>({id: "", coordinates: {latitude: 50.9412, longitude: 6.9582}, name: ""})
+    const mapHeight = `calc(100vh - 200px)`;
 
     function onSaveSpot(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
@@ -28,7 +29,7 @@ export default function AddSpot(props: AddSpotProps) {
 
     return (
         <div>
-            <SpotMapComponent spot={spot} setSpot={setSpot} spots={props.spots} isSpotToEdit={false}/>
+            <SpotMapComponent spot={spot} setSpot={setSpot} spots={props.spots} isSpotToEdit={false} mapHeight={mapHeight}/>
 
             <form className="form" onSubmit={onSaveSpot}>
                 <TextField label='name'

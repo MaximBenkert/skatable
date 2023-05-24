@@ -1,20 +1,21 @@
 import {NavLink} from "react-router-dom";
 import {BottomNavigation, BottomNavigationAction, Paper} from "@mui/material";
-import HomeIcon from '@mui/icons-material/Home';
 import AddIcon from '@mui/icons-material/Add';
+import LanguageIcon from '@mui/icons-material/Language';
+import SkateboardingOutlinedIcon from '@mui/icons-material/SkateboardingOutlined';
 
 export default function Navigation() {
 
 
     return (
         <div>
-            <Paper sx={{position: 'fixed', bottom: '0.1rem'}}>
+            <Paper sx={{position: 'fixed', bottom: '0.0rem'}}>
                 <BottomNavigation sx={{width: '100vw', bgcolor: "#228B22"}}>
                     <NavLink to="/">
                         <BottomNavigationAction
                             label="spots"
                             value="/"
-                            icon={<HomeIcon/>}
+                            icon={<LanguageIcon/>}
                         />
                     </NavLink>
                     <NavLink to="/add">
@@ -22,6 +23,13 @@ export default function Navigation() {
                             label="add"
                             value="/add"
                             icon={<AddIcon/>}
+                        />
+                    </NavLink>
+                    <NavLink to="/gallery">
+                        <BottomNavigationAction
+                            label="gallery"
+                            value="/gallery"
+                            icon={<SkateboardingOutlinedIcon/>}
                         />
                     </NavLink>
                 </BottomNavigation>
