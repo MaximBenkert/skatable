@@ -41,7 +41,7 @@ export default function SpotDetails(props: DetailProps) {
             <ButtonGroup sx={{display: "flex", justifyContent: "space-between"}} variant="text"
                          aria-label="text button group">
                 <Button variant="outlined"
-                        onClick={() => navigate(`/`)}>Back</Button>
+                        onClick={() => navigate(`/gallery`)}>Back</Button>
                 <Button className="button" variant="contained" endIcon={<EditIcon/>}
                         onClick={() => navigate(`/edit/${props.spot.id}`)}>Edit</Button>
             </ButtonGroup>

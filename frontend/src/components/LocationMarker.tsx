@@ -8,8 +8,6 @@ type Props = {
 }
 export default function LocationMarker(props: Props) {
 
-
-
     const map = useMapEvents({})
 
 

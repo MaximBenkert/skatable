@@ -31,6 +31,7 @@ export default function EditDelivery(props: EditProps) {
         event.preventDefault()
         if (id) {
             props.updateSpot(props.spot)
+            navigate("/")
         }
     }
 
