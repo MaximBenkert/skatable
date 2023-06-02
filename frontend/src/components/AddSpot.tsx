@@ -4,6 +4,8 @@ import {useNavigate} from "react-router-dom";
 import {Button, TextField} from "@mui/material";
 import './Form.css'
 import SpotMapComponent from "./SpotMapComponent";
+import Header from "./Header";
+import Navigation from "./Navigation";
 
 type AddSpotProps = {
     spots: Spot []
@@ -15,7 +17,7 @@ export default function AddSpot(props: AddSpotProps) {
 
     const navigate = useNavigate()
     const [spot, setSpot] = useState<Spot>({id: "", coordinates: {latitude: 50.9412, longitude: 6.9582}, name: ""})
-    const mapHeight = `calc(100vh - 244px)`;
+    const mapHeight = `calc(100vh - 40vh)`;
 
     function onSaveSpot(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
@@ -28,9 +30,12 @@ export default function AddSpot(props: AddSpotProps) {
     }
 
     return (
-        <div style={{ backgroundColor:"#9CBAC6"}}>
-            <SpotMapComponent spot={spot} setSpot={setSpot} spots={props.spots} isSpotToEdit={false} mapHeight={mapHeight}/>
-
+        <div style={{ backgroundColor:"#9CBAC6", display: "flex", flexDirection: "column", justifyContent: "space-evenly"}} >
+            <Header/>
+            <div style={{flex: 1}}>
+                <SpotMapComponent spot={spot} setSpot={setSpot} spots={props.spots} isSpotToEdit={false} mapHeight={"65vh"}
+                />
+            </div>
 
             <form className="form" onSubmit={onSaveSpot} style={{ color: "#6699CC"}}>
                 <TextField label='name your spot'
@@ -47,6 +52,10 @@ export default function AddSpot(props: AddSpotProps) {
                 >Save</Button>
 
             </form>
+            <div>
+                <Navigation/>
+            </div>
+
         </div>
     )
 

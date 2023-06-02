@@ -7,8 +7,8 @@ import SkateboardingOutlinedIcon from '@mui/icons-material/SkateboardingOutlined
 export default function Navigation() {
     return (
         <div>
-            <Paper sx={{ position: 'fixed', bottom: '0.0rem' }}>
-                <BottomNavigation sx={{ width: '100vw', bgcolor: "#000000" }}>
+            <Paper sx={{ position: "fixed", bottom: '0.0rem', bgcolor: "#000000"}}>
+                <BottomNavigation sx={{ width: '100vw', bgcolor: "#000000", height: "10vh", display: "flex", justifyContent: "center", alignItems: "center"  }}>
                     <NavLink to="/" style={{ textDecoration: 'none' }}>
                         <BottomNavigationAction
                             label="Spots"

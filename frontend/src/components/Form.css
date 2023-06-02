@@ -1,8 +1,10 @@
 .form {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 0.5rem;
     margin: 1rem;
+    height: 15vh;
 }
 
 .myButton {
