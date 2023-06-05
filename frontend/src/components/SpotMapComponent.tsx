@@ -29,13 +29,12 @@ export default function SpotMapComponent(props: CommonMapProps) {
     })
 
     return (
-        <div>
-
+        <div style={{display: "flex"}}>
         <MapContainer
             center={centerCoordinates}
             zoom={props.isSpotToEdit ? 17 : 15}
             scrollWheelZoom={true}
-            style={{width: "100vw", minHeight: props.mapHeight}}>
+            style={{flex: 1, width: "100vw", minHeight: props.mapHeight}}>
 
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

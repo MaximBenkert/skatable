@@ -31,11 +31,13 @@ export default function AddSpot(props: AddSpotProps) {
 
     return (
         <div style={{ backgroundColor:"#9CBAC6", display: "flex", flexDirection: "column", justifyContent: "space-evenly"}} >
-            <Header/>
-            <div style={{flex: 1}}>
-                <SpotMapComponent spot={spot} setSpot={setSpot} spots={props.spots} isSpotToEdit={false} mapHeight={"65vh"}
-                />
-            </div>
+            <Header />
+
+            <SpotMapComponent spot={spot}
+                              setSpot={setSpot}
+                              spots={props.spots}
+                              isSpotToEdit={false}
+                              mapHeight={"35vh"}/>
 
             <form className="form" onSubmit={onSaveSpot} style={{ color: "#6699CC"}}>
                 <TextField label='name your spot'
