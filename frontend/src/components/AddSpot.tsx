@@ -44,7 +44,7 @@ export default function AddSpot(props: AddSpotProps) {
         coordinates: { latitude: 50.9412, longitude: 6.9582 },
         name: "",
     });
-    const mapHeight = `calc(100vh - 244px)`;
+    const mapHeight = `calc(100vh - 444px)`;
 
     function onSaveSpot(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();

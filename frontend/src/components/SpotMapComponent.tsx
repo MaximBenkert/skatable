@@ -5,7 +5,6 @@ import { Spot } from "../models/Spot";
 import MapHook from "./MapHook";
 import LocationMarker from "./LocationMarker";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
 
 type CommonMapProps = {
     spot?: Spot;
@@ -33,7 +32,7 @@ export default function SpotMapComponent(props: CommonMapProps) {
             center={centerCoordinates}
             zoom={props.isSpotToEdit ? 17 : 15}
             scrollWheelZoom={true}
-            style={{ width: "100vw", height: props.mapHeight, maxWidth: "1200px", margin: "0 auto" }}
+            style={{ width: "100%", height: props.mapHeight, maxWidth: "1200px", marginTop: "60px" , marginBottom: "60px" }}
         >
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

@@ -18,7 +18,7 @@ type EditProps = {
 export default function EditDelivery(props: EditProps) {
     const {id} = useParams();
     const navigate = useNavigate();
-    const mapHeight: string = `calc(100vh - 281px)`;
+    const mapHeight: string = `calc(100vh - 481px)`;
 
     useEffect(() => {
         if (id) {
