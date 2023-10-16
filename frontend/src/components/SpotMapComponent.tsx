@@ -32,7 +32,7 @@ export default function SpotMapComponent(props: CommonMapProps) {
             center={centerCoordinates}
             zoom={props.isSpotToEdit ? 17 : 15}
             scrollWheelZoom={true}
-            style={{ width: "100%", height: props.mapHeight, maxWidth: "1200px", marginTop: "60px" , marginBottom: "60px" }}
+            style={{ width: "100%", height: props.mapHeight, maxWidth: "1200px"}}
         >
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

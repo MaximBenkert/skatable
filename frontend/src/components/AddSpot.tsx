@@ -1,31 +1,44 @@
 import React, { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { TextField } from "@mui/material";
 import styled from "styled-components";
 import SpotMapComponent from "./SpotMapComponent";
 import { Spot } from "../models/Spot";
 
 const AddSpotContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
   background-color: #9cbac6;
+  height: 80%;
 `;
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   padding: 1rem;
-  color: #6699cc;
+  background-color: #6699cc;
+  border-radius: 10px;
+  height: 30%;
 `;
 
-const FormTextField = styled(TextField)`
-  && {
-    color: #6699cc;
-    margin: 1rem 0;
+const FormTextField = styled.input`
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  color: #1974d4;
+  margin-bottom: 10px;
+
+  &:focus {
+    outline: none;
+    border-color: #6699cc;
   }
 `;
 
 const SaveButton = styled.button`
-  background-color: #6699cc;
+  background-color: #e76513;
   color: #fff;
   border: none;
   padding: 0.5rem 1rem;
@@ -44,7 +57,8 @@ export default function AddSpot(props: AddSpotProps) {
         coordinates: { latitude: 50.9412, longitude: 6.9582 },
         name: "",
     });
-    const mapHeight = `calc(100vh - 444px)`;
+
+    const mapHeight = `60%`;
 
     function onSaveSpot(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -68,7 +82,8 @@ export default function AddSpot(props: AddSpotProps) {
 
             <Form onSubmit={onSaveSpot}>
                 <FormTextField
-                    label="Name your spot"
+                    type="text"
+                    placeholder="Name your spot"
                     required
                     value={spot.name}
                     onChange={(event) => setSpot({ ...spot, name: event.target.value })}

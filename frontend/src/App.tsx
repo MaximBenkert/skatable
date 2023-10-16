@@ -14,9 +14,9 @@ const Main = styled.main`
   position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   min-height: 100vh;
-  padding: 16px;
 `;
 
 const AppContainer = styled.div`
@@ -25,13 +25,12 @@ const AppContainer = styled.div`
   background-color: #f5f5f5; /* Hintergrundfarbe für den Inhalt anpassen */
   border-radius: 8px; /* Abgerundete Ecken hinzufügen */
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Schatten hinzufügen */
-  padding: 16px;
-  margin-top: 16px; /* Einen Abstand nach oben hinzufügen */
+  height: 100vh;
 `;
 
 function App() {
     const { spot, setSpot, spots, addSpot, loadSpotByID, deleteSpot, updateSpot } = useSpots();
-    const mapHeight = 'calc(100vh - 300px)';
+    const mapHeight = '80%';
 
     return (
         <Main>
