@@ -15,7 +15,7 @@ type EditProps = {
     deleteSpot: (id: string) => void
 }
 
-export default function EditDelivery(props: EditProps) {
+export default function EditSpot(props: EditProps) {
     const {id} = useParams();
     const navigate = useNavigate();
     const mapHeight: string = `calc(100vh - 481px)`;

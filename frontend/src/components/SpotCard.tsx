@@ -16,9 +16,19 @@ const CardTitle = styled.big``;
 
 const DetailsButton = styled.button`
   background-color: transparent;
-  border: 2px solid inherit;
+  border: 2px solid #1974d4;
+  color: #1974d4;
   cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+
+  &:hover {
+    background-color: #1974d4;
+    color: #fff;
+  }
 `;
+
 
 type CardProps = {
     spot: Spot;
