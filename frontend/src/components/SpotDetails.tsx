@@ -39,7 +39,7 @@ const ButtonGroup = styled.div`
 `;
 
 const Button = styled.button`
-  background-color: #e48516;
+  background-color: #1bbea0;
   color: inherit;
   border: none;
   cursor: pointer;
