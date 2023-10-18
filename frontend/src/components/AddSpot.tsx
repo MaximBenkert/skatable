@@ -8,6 +8,7 @@ const AddSpotContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  align-items: center;
   background-color: #9cbac6;
   height: 80%;
 `;
@@ -20,7 +21,8 @@ const Form = styled.form`
   padding: 1rem;
   background-color: #6699cc;
   border-radius: 10px;
-  height: 30%;
+  height: 15%;
+  width: 80%;
 `;
 
 const FormTextField = styled.input`
@@ -38,7 +40,7 @@ const FormTextField = styled.input`
 `;
 
 const SaveButton = styled.button`
-  background-color: #e76513;
+  background-color: #378116;
   color: #fff;
   border: none;
   padding: 0.5rem 1rem;
@@ -58,7 +60,7 @@ export default function AddSpot(props: AddSpotProps) {
         name: "",
     });
 
-    const mapHeight = `60%`;
+    const mapHeight = `70%`;
 
     function onSaveSpot(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();

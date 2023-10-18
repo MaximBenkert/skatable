@@ -22,8 +22,9 @@ export default function MapForDetails (props: Props) {
 
     return (
         <MapContainer
+            key={props.spot.id}
             center={centerCoordinates}
-            zoom={16}
+            zoom={15}
             scrollWheelZoom={true}
             style={{width: "100%", height: mapHeight, maxWidth: "1200px"}}
         >
