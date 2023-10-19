@@ -1,29 +1,40 @@
-import {Spot} from "../models/Spot";
-import {Container, Typography} from "@mui/material";
+import React from "react";
+import { Spot } from "../models/Spot";
+import styled from "styled-components";
 import SpotCard from "./SpotCard";
-import './SpotGallery.css'
+
+const GalleryContainer = styled.div`
+  background-color: #9cbac6;
+  padding: 1rem;
+`;
+
+const GalleryTitle = styled.h2`
+  font-size: 3rem;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const SpotsContainer = styled.div`
+  padding-bottom: 720px;
+`;
 
 type Props = {
-    spots: Spot[]
-}
+    spots: Spot[];
+};
 
-export default function SpotGallery(props: Props) {
-
+const SpotGallery = (props: Props) => {
     return (
-        <Container className="spotgallery" maxWidth="lg" sx={{ backgroundColor: "#9CBAC6" }}>
+        <GalleryContainer>
+            <GalleryTitle>Gallery</GalleryTitle>
+            <SpotsContainer>
+                {props.spots.map((spot) => (
+                    <SpotCard key={spot.id} spot={spot} />
+                ))}
+            </SpotsContainer>
+        </GalleryContainer>
+    );
+};
 
-                <Typography sx={{fontSize: "3rem", padding: "1rem", display: "flex", alignItems: "center", justifyContent: "center" }} variant="h2" component="h2">
-                    Gallery
-                </Typography>
-                <div style={{ paddingBottom: "720px" }}>
-                    {props.spots.map((spot) => {
-                        return (
-                            <SpotCard key={spot.id} spot={spot}/>
-                        )
-                    })
-                    }
-                </div>
-        </Container>
-    )
-}
-
+export default SpotGallery;

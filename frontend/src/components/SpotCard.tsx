@@ -1,29 +1,51 @@
-import {Spot} from "../models/Spot";
-import {Button, ButtonGroup, Card} from "@mui/material";
 import React from "react";
-import {useNavigate} from "react-router-dom";
+import { Spot } from "../models/Spot";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+
+const CardContainer = styled.div`
+  background-color: #9cbac6;
+  margin: 12px;
+  padding: 23px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const CardTitle = styled.big``;
+
+const DetailsButton = styled.button`
+  background-color: transparent;
+  border: 2px solid #1974d4;
+  color: #1974d4;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+
+  &:hover {
+    background-color: #1974d4;
+    color: #fff;
+  }
+`;
+
 
 type CardProps = {
-    spot: Spot
-}
+    spot: Spot;
+};
 
-export default function SpotCard(props: CardProps) {
-    const navigate = useNavigate()
+const SpotCard = (props: CardProps) => {
+    const navigate = useNavigate();
 
     return (
-        <div style={{backgroundColor: "#9CBAC6"}}>
-            <Card style={{margin: "12px", padding:"23px", backgroundColor: "#9CBAC6", display: "flex", justifyContent: "space-between", alignItems: "center"}} variant="outlined" className="details-card">
-                <big>{props.spot.name}</big>
+        <CardContainer>
+            <CardTitle>{props.spot.name}</CardTitle>
+            <DetailsButton onClick={() => navigate(`/details/${props.spot.id}`)}>
+                Details
+            </DetailsButton>
+        </CardContainer>
+    );
+};
 
-                <ButtonGroup variant="text"
-                             aria-label="text button group">
-                    <Button variant="outlined"
-                            color={"inherit"}
-                            onClick={() => navigate(`/details/${props.spot.id}`)}>Details</Button>
-                </ButtonGroup>
-            </Card>
-        </div>
-
-    )
-}
+export default SpotCard;
 

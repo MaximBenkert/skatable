@@ -1,37 +1,89 @@
-import {useNavigate, useParams} from "react-router-dom";
-import React, {Dispatch, FormEvent, SetStateAction, useEffect} from "react";
-import {Button, TextField} from "@mui/material";
-import {Spot} from "../models/Spot";
-import './Form.css'
+import React, { Dispatch, FormEvent, SetStateAction, useEffect } from "react";
+import styled from "styled-components";
+import { useNavigate, useParams } from "react-router-dom";
+import { Spot } from "../models/Spot";
 import SpotMapComponent from "./SpotMapComponent";
-import DeleteIcon from "@mui/icons-material/Delete";
+
+const EditSpotContainer = styled.div`
+  background-color: #9cbac6;
+  display: flex;
+  flex-direction: column;
+  height: 80%;
+`;
+
+const FormContainer = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #6699cc;
+  border-radius: 10px;
+  height: 40%;
+`;
+
+const NameInput = styled.input`
+  width: 80%;
+  padding: 10px;
+  margin: 5px;
+  border: 1px solid #b7e2d9;
+  border-radius: 5px;
+`;
+
+const UpdateButton = styled.button`
+  background-color: #1bbea0;
+  color: #fff;
+  width: 80%;
+  padding: 10px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #333;
+  }
+`;
+
+const DeleteButton = styled.button`
+  background-color: #e7330a;
+  color: #fff;
+  padding: 10px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #d00;
+  }
+`;
 
 type EditProps = {
-    loadSpotById: (id: string) => void,
-    updateSpot: (spot: Spot) => void
-    spot: Spot,
-    setSpot: Dispatch<SetStateAction<Spot>>
-    spots: Spot []
-    deleteSpot: (id: string) => void
-}
+    loadSpotById: (id: string) => void;
+    updateSpot: (spot: Spot) => void;
+    spot: Spot;
+    setSpot: Dispatch<SetStateAction<Spot>>;
+    spots: Spot[];
+    deleteSpot: (id: string) => void;
+};
 
-export default function EditDelivery(props: EditProps) {
-    const {id} = useParams();
+export default function EditSpot(props: Readonly <EditProps>) {
+    const { id } = useParams();
     const navigate = useNavigate();
-    const mapHeight: string = `calc(100vh - 281px)`;
+    const mapHeight: string = `60%`;
 
     useEffect(() => {
         if (id) {
             props.loadSpotById(id);
         }
-        //eslint-disable-next-line
-    }, [id])
+        // eslint-disable-next-line
+    }, [id]);
 
     function onUpdateSpot(event: FormEvent<HTMLFormElement>) {
-        event.preventDefault()
+        event.preventDefault();
         if (id) {
-            props.updateSpot(props.spot)
-            navigate("/gallery")
+            props.updateSpot(props.spot);
+            navigate("/gallery");
         }
     }
 
@@ -43,33 +95,27 @@ export default function EditDelivery(props: EditProps) {
         }
     }
 
-
     return (
-        <div style={{backgroundColor: "#9CBAC6"}}>
-            <SpotMapComponent spot={props.spot} setSpot={props.setSpot} spots={props.spots} isSpotToEdit={true}
-                              mapHeight={mapHeight}/>
-
-            <form className="form"
-
-                  onSubmit={onUpdateSpot}>
-                <TextField label='name'
-                           value={props.spot.name}
-                           onChange={(event) => props.setSpot({...props.spot, name: event.target.value})}
+        <EditSpotContainer>
+            <SpotMapComponent
+                spot={props.spot}
+                setSpot={props.setSpot}
+                spots={props.spots}
+                isSpotToEdit={true}
+                mapHeight={mapHeight}
+            />
+            <FormContainer onSubmit={onUpdateSpot}>
+                <NameInput
+                    type="text"
+                    placeholder="Name"
+                    value={props.spot.name}
+                    onChange={(event) =>
+                        props.setSpot({ ...props.spot, name: event.target.value })
+                    }
                 />
-                <Button
-                    variant='contained'
-                    color="inherit"
-                    type='submit'
-                >update</Button>
-
-                <Button className="myButton"
-                        variant="outlined"
-                        color="inherit"
-                        endIcon={<DeleteIcon/>}
-                        onClick={onDeleteClick}></Button>
-
-            </form>
-
-        </div>
-    )
+                <UpdateButton type="submit">Update</UpdateButton>
+                <DeleteButton onClick={onDeleteClick}>Delete</DeleteButton>
+            </FormContainer>
+        </EditSpotContainer>
+    );
 }

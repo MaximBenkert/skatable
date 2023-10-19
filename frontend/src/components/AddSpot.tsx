@@ -1,53 +1,97 @@
-import {Spot} from "../models/Spot";
-import {FormEvent, useState} from "react";
-import {useNavigate} from "react-router-dom";
-import {Button, TextField} from "@mui/material";
-import './Form.css'
+import React, { FormEvent, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 import SpotMapComponent from "./SpotMapComponent";
+import { Spot } from "../models/Spot";
+
+const AddSpotContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #9cbac6;
+  height: 80%;
+`;
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background-color: #6699cc;
+  border-radius: 10px;
+  height: 15%;
+  width: 80%;
+`;
+
+const FormTextField = styled.input`
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  color: #1974d4;
+  margin-bottom: 10px;
+
+  &:focus {
+    outline: none;
+    border-color: #6699cc;
+  }
+`;
+
+const SaveButton = styled.button`
+  background-color: #378116;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+`;
 
 type AddSpotProps = {
-    spots: Spot []
-    addSpot: (newSpot: Spot) => void
+    spots: Spot[];
+    addSpot: (newSpot: Spot) => void;
+};
 
-}
+export default function AddSpot(props: Readonly <AddSpotProps>) {
+    const navigate = useNavigate();
+    const [spot, setSpot] = useState<Spot>({
+        id: "",
+        coordinates: { latitude: 50.9412, longitude: 6.9582 },
+        name: "",
+    });
 
-export default function AddSpot(props: AddSpotProps) {
-
-    const navigate = useNavigate()
-    const [spot, setSpot] = useState<Spot>({id: "", coordinates: {latitude: 50.9412, longitude: 6.9582}, name: ""})
-    const mapHeight = `calc(100vh - 244px)`;
+    const mapHeight = `70%`;
 
     function onSaveSpot(event: FormEvent<HTMLFormElement>) {
-        event.preventDefault()
+        event.preventDefault();
         if (spot.name === undefined || spot.name === "") {
-            console.error("name required")
-            return
+            console.error("Name is required");
+            return;
         }
-        props.addSpot(spot)
-        navigate("/")
+        props.addSpot(spot);
+        navigate("/");
     }
 
     return (
-        <div style={{ backgroundColor:"#9CBAC6"}}>
-            <SpotMapComponent spot={spot} setSpot={setSpot} spots={props.spots} isSpotToEdit={false} mapHeight={mapHeight}/>
+        <AddSpotContainer>
+            <SpotMapComponent
+                spot={spot}
+                setSpot={setSpot}
+                spots={props.spots}
+                isSpotToEdit={false}
+                mapHeight={mapHeight}
+            />
 
-
-            <form className="form" onSubmit={onSaveSpot} style={{ color: "#6699CC"}}>
-                <TextField label='name your spot'
-                           required
-                           value={spot.name}
-                           onChange={(event) =>
-                               setSpot({...spot, name: event.target.value})
-                           }/>
-                <Button
-                    className='myButton'
-                    variant='contained'
-                    color="inherit"
-                    type='submit'
-                >Save</Button>
-
-            </form>
-        </div>
-    )
-
+            <Form onSubmit={onSaveSpot}>
+                <FormTextField
+                    type="text"
+                    placeholder="Name your spot"
+                    required
+                    value={spot.name}
+                    onChange={(event) => setSpot({ ...spot, name: event.target.value })}
+                />
+                <SaveButton type="submit">Save</SaveButton>
+            </Form>
+        </AddSpotContainer>
+    );
 }
