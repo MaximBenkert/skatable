@@ -58,7 +58,7 @@ type DetailProps = {
     spot: Spot;
 };
 
-export default function SpotDetails(props: DetailProps) {
+export default function SpotDetails(props: Readonly <DetailProps>) {
     const { id } = useParams();
     const navigate = useNavigate();
 

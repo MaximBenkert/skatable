@@ -11,7 +11,7 @@ const spotIcon = new L.Icon({
     iconSize: [80, 80],
 });
 
-export default function MapForDetails (props: Props) {
+export default function MapForDetails (props: Readonly <Props>) {
 
     const centerCoordinates: LatLngTuple = [props.spot.coordinates.latitude, props.spot.coordinates.longitude]
 

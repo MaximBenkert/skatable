@@ -52,7 +52,7 @@ type AddSpotProps = {
     addSpot: (newSpot: Spot) => void;
 };
 
-export default function AddSpot(props: AddSpotProps) {
+export default function AddSpot(props: Readonly <AddSpotProps>) {
     const navigate = useNavigate();
     const [spot, setSpot] = useState<Spot>({
         id: "",

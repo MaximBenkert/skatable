@@ -19,7 +19,7 @@ const spotIcon = new L.Icon({
     iconSize: [80, 80],
 });
 
-export default function SpotMapComponent(props: CommonMapProps) {
+export default function SpotMapComponent(props: Readonly <CommonMapProps>) {
     const navigate = useNavigate();
     const [position, setPosition] = useState<LatLng>(new LatLng(50.9413, 6.9585));
 

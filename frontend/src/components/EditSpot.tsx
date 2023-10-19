@@ -67,7 +67,7 @@ type EditProps = {
     deleteSpot: (id: string) => void;
 };
 
-export default function EditSpot(props: EditProps) {
+export default function EditSpot(props: Readonly <EditProps>) {
     const { id } = useParams();
     const navigate = useNavigate();
     const mapHeight: string = `60%`;
