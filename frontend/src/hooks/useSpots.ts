@@ -30,8 +30,16 @@ export default function useSpots() {
             })
     }
 
-        function addSpot(spot: NewSpot) {
-            axios.post("/api/spots", spot)
+        function addSpot(spot: NewSpot, image: File | undefined) {
+
+            const data = new FormData()
+
+            if (image) {
+                data.append("uploadImage", image)
+            }
+            data.append("json", new Blob([JSON.stringify(spot)], {"type": "application/json"}))
+
+            axios.post("/api/spots", data)
                 .then(spotAddedResponse => spotAddedResponse.data)
                 .then(data => setSpots([...spots, data]))
                 .catch(reason => console.error(reason))

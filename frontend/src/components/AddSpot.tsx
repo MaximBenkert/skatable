@@ -49,7 +49,7 @@ const SaveButton = styled.button`
 
 type AddSpotProps = {
     spots: Spot[];
-    addSpot: (newSpot: Spot) => void;
+    addSpot: (newSpot: Spot, image: File | undefined) => void;
 };
 
 export default function AddSpot(props: Readonly <AddSpotProps>) {
@@ -58,7 +58,9 @@ export default function AddSpot(props: Readonly <AddSpotProps>) {
         id: "",
         coordinates: { latitude: 50.9412, longitude: 6.9582 },
         name: "",
+
     });
+    const [image, setImage] = useState<File>()
 
     const mapHeight = `70%`;
 
@@ -68,7 +70,7 @@ export default function AddSpot(props: Readonly <AddSpotProps>) {
             console.error("Name is required");
             return;
         }
-        props.addSpot(spot);
+        props.addSpot(spot, image);
         navigate("/");
     }
 
@@ -89,6 +91,15 @@ export default function AddSpot(props: Readonly <AddSpotProps>) {
                     required
                     value={spot.name}
                     onChange={(event) => setSpot({ ...spot, name: event.target.value })}
+                />
+                <input
+                    type="file"
+                    onChange={(event) => {
+                        if (event.target.files) {
+                            setImage(event.target.files[0])
+                        }
+                    }}
+
                 />
                 <SaveButton type="submit">Save</SaveButton>
             </Form>
